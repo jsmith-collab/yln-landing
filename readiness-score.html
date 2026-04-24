@@ -12,6 +12,7 @@
     rel="stylesheet">
   <style>
     :root {
+      --page-max-width: 1300px;
       --ink: #0c1332;
       --ink-mid: #16204f;
       --ink-soft: #243574;
@@ -69,12 +70,22 @@
 
     .topbar {
       background: rgba(255, 255, 255, .96);
-      padding: .65rem 1.6rem;
+      border-bottom: 1px solid rgba(12, 19, 50, .08);
+      backdrop-filter: blur(10px);
+    }
+
+    .page-shell {
+      width: min(100%, var(--page-max-width));
+      margin: 0 auto;
+      padding: 0 1.6rem;
+    }
+
+    .topbar-inner {
+      min-height: 77px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      border-bottom: 1px solid rgba(12, 19, 50, .08);
-      backdrop-filter: blur(10px);
+      gap: 1rem;
     }
 
     .brand {
@@ -107,6 +118,9 @@
     .main {
       display: flex;
       align-items: stretch;
+      width: min(100%, var(--page-max-width));
+      margin: 0 auto;
+      padding: 0 1.6rem;
     }
 
     /* ─── LEFT RAIL ─── */
@@ -160,7 +174,7 @@
 
     .rail-sub {
       font-size: 13px;
-      color: rgba(247, 245, 240, .5);
+      color: rgba(247, 245, 240, .74);
       line-height: 1.7;
       font-weight: 400;
       margin-bottom: 2.5rem;
@@ -179,7 +193,7 @@
       gap: .75rem;
       font-family: var(--font-mono);
       font-size: 11px;
-      color: rgba(247, 245, 240, .45);
+      color: rgba(247, 245, 240, .68);
       letter-spacing: .04em;
     }
 
@@ -187,8 +201,9 @@
       width: 28px;
       height: 28px;
       border-radius: 6px;
-      background: rgba(184, 134, 45, .12);
-      border: 1px solid rgba(184, 134, 45, .2);
+      background: rgba(184, 134, 45, .18);
+      border: 1px solid rgba(184, 134, 45, .32);
+      color: rgba(247, 245, 240, .8);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -205,7 +220,7 @@
       justify-content: space-between;
       font-family: var(--font-mono);
       font-size: 10px;
-      color: rgba(247, 245, 240, .35);
+      color: rgba(247, 245, 240, .58);
       letter-spacing: .06em;
       margin-bottom: .5rem;
     }
@@ -251,8 +266,7 @@
     /* ─── RIGHT CONTENT ─── */
     .right-content {
       flex: 1;
-      width: 100%;
-      max-width: 1120px;
+      min-width: 0;
       padding: 3.25rem 3.25rem 3rem;
       display: flex;
       flex-direction: column;
@@ -265,13 +279,14 @@
 
     .intro-layout {
       display: grid;
-      grid-template-columns: minmax(0, 1.1fr) minmax(360px, .9fr);
-      gap: 2rem;
+      grid-template-columns: minmax(0, 1.08fr) minmax(420px, .92fr);
+      gap: 2.15rem;
       align-items: start;
     }
 
     .intro-copy {
-      max-width: 640px;
+      max-width: 680px;
+      padding-top: .35rem;
     }
 
     .intro-badge {
@@ -280,8 +295,8 @@
       gap: 6px;
       background: var(--gold-pale);
       border: 1px solid rgba(184, 134, 45, .25);
-      border-radius: 4px;
-      padding: 4px 12px;
+      border-radius: 999px;
+      padding: 6px 14px;
       font-family: var(--font-mono);
       font-size: 10px;
       letter-spacing: .08em;
@@ -312,31 +327,34 @@
 
     .intro-headline {
       font-family: var(--font-display);
-      font-size: clamp(48px, 6vw, 84px);
+      font-size: clamp(34px, 3.8vw, 52px);
       color: var(--ink);
-      line-height: .98;
+      line-height: 1.02;
       letter-spacing: -.035em;
       margin-bottom: 1rem;
+      max-width: 620px;
     }
 
     .intro-headline em {
+      display: block;
       font-style: italic;
       color: var(--gold);
     }
 
     .intro-body {
-      font-size: 18px;
+      font-size: 16px;
       color: #4f4b46;
-      line-height: 1.9;
-      max-width: 580px;
-      margin-bottom: 2rem;
+      line-height: 1.78;
+      max-width: 560px;
+      margin-bottom: 1.5rem;
     }
 
     .intro-trust-row {
       display: flex;
       flex-wrap: wrap;
       gap: .75rem;
-      margin-bottom: 2rem;
+      margin-bottom: 1.35rem;
+      max-width: 560px;
     }
 
     .trust-pill {
@@ -355,6 +373,37 @@
       color: var(--ink-soft);
     }
 
+    .intro-value-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: .9rem;
+      margin-bottom: 1.5rem;
+      max-width: 560px;
+    }
+
+    .intro-value-card {
+      background: rgba(255, 255, 255, .72);
+      border: 1px solid rgba(12, 19, 50, .08);
+      border-radius: 18px;
+      padding: .95rem 1rem;
+      box-shadow: 0 10px 30px rgba(12, 19, 50, .05);
+    }
+
+    .intro-value-label {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: .45rem;
+    }
+
+    .intro-value-copy {
+      font-size: 13px;
+      line-height: 1.6;
+      color: #5a554e;
+    }
+
     .trust-pill-dot {
       width: 7px;
       height: 7px;
@@ -367,11 +416,14 @@
       background:
         linear-gradient(180deg, rgba(255, 255, 255, .98) 0%, rgba(255, 255, 255, .92) 100%);
       border: 1px solid rgba(12, 19, 50, .08);
-      border-radius: 28px;
-      padding: 1.5rem;
-      box-shadow: 0 20px 50px rgba(12, 19, 50, .1);
+      border-radius: 30px;
+      padding: 1.75rem;
+      box-shadow: 0 22px 60px rgba(12, 19, 50, .12);
       position: relative;
       overflow: hidden;
+      width: 100%;
+      max-width: 560px;
+      justify-self: end;
     }
 
     .intro-proof-panel::before {
@@ -382,12 +434,26 @@
       background: linear-gradient(90deg, var(--gold-light), var(--ink-soft));
     }
 
+    .intro-proof-panel::after {
+      content: '';
+      position: absolute;
+      top: -120px;
+      right: -120px;
+      width: 320px;
+      height: 320px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(193, 160, 106, .08) 0%, transparent 72%);
+      pointer-events: none;
+    }
+
     .preview-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
       gap: 1rem;
-      margin-bottom: 1rem;
+      margin-bottom: 1.15rem;
+      position: relative;
+      z-index: 1;
     }
 
     .preview-kicker {
@@ -399,7 +465,7 @@
     }
 
     .preview-status {
-      padding: .35rem .7rem;
+      padding: .45rem .9rem;
       border-radius: 999px;
       background: var(--gold-pale);
       color: var(--amber);
@@ -416,6 +482,8 @@
       color: var(--paper);
       margin-bottom: 1rem;
       box-shadow: inset 0 0 0 1px rgba(245, 241, 232, .05);
+      position: relative;
+      z-index: 1;
     }
 
     .preview-score-label {
@@ -454,26 +522,31 @@
     }
 
     .report-preview {
-      background: var(--white);
+      background: linear-gradient(180deg, rgba(255, 255, 255, .96) 0%, rgba(245, 247, 252, .92) 100%);
       border: 1px solid rgba(12, 19, 50, .08);
       border-radius: 18px;
       padding: 1.2rem 1.25rem;
       margin-bottom: 1rem;
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1rem;
+      grid-template-columns: 1fr;
+      gap: .9rem;
+      position: relative;
+      z-index: 1;
     }
 
     .preview-item {
       display: flex;
       align-items: flex-start;
       gap: .625rem;
-      padding: .2rem 0;
+      padding: .95rem;
+      border-radius: 16px;
+      background: rgba(255, 255, 255, .74);
+      border: 1px solid rgba(12, 19, 50, .06);
     }
 
     .preview-dot {
-      width: 8px;
-      height: 8px;
+      width: 10px;
+      height: 10px;
       border-radius: 50%;
       flex-shrink: 0;
       margin-top: .45rem;
@@ -483,20 +556,23 @@
       font-size: 15px;
       color: var(--ink-soft);
       font-weight: 600;
-      margin-bottom: .15rem;
+      margin-bottom: .25rem;
+      line-height: 1.35;
     }
 
     .preview-sub {
-      font-size: 12px;
+      font-size: 13px;
       color: #7f7a73;
       margin-top: 1px;
-      line-height: 1.55;
+      line-height: 1.5;
     }
 
     .preview-footer {
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: 1fr;
       gap: .9rem;
+      position: relative;
+      z-index: 1;
     }
 
     .preview-footer-card {
@@ -1584,7 +1660,7 @@
       padding: 1.25rem 0;
       font-family: var(--font-mono);
       font-size: 10px;
-      color: #bbb;
+      color: #69645c;
       letter-spacing: .04em;
       border-top: 1px solid var(--paper-mid);
       margin-top: 1.5rem;
@@ -1597,11 +1673,116 @@
       text-align: center;
       font-family: var(--font-mono);
       font-size: 10px;
-      color: rgba(247, 245, 240, .25);
+      color: var(--white);
       letter-spacing: .05em;
     }
 
+    .webinar-modal {
+      position: fixed;
+      inset: 0;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 1.25rem;
+      background: rgba(12, 19, 50, .58);
+      backdrop-filter: blur(10px);
+      z-index: 3000;
+    }
+
+    .webinar-modal.open {
+      display: flex;
+    }
+
+    .webinar-modal-dialog {
+      position: relative;
+      width: min(100%, 760px);
+      max-height: calc(100vh - 2.5rem);
+      background: var(--white);
+      border-radius: 22px;
+      box-shadow: 0 30px 80px rgba(12, 19, 50, .28);
+      overflow: hidden;
+    }
+
+    .webinar-modal-close {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      width: 38px;
+      height: 38px;
+      border: none;
+      border-radius: 999px;
+      background: rgba(12, 19, 50, .08);
+      color: var(--ink);
+      font-size: 20px;
+      line-height: 1;
+      cursor: pointer;
+      z-index: 1;
+    }
+
+    .webinar-modal-close:hover {
+      background: rgba(12, 19, 50, .14);
+    }
+
+    .webinar-modal-frame {
+      display: block;
+      width: 100%;
+      height: min(720px, calc(100vh - 2.5rem));
+      border: none;
+      background: var(--white);
+    }
+
+    body.modal-open {
+      overflow: hidden;
+    }
+
     /* ─── RESPONSIVE ─── */
+    @media (min-width: 1280px) {
+      .intro-layout {
+        grid-template-columns: minmax(0, 1.12fr) minmax(460px, .88fr);
+      }
+
+      .intro-proof-panel {
+        max-width: 600px;
+      }
+
+      .preview-footer {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 980px) {
+      .intro-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .intro-copy {
+        max-width: 760px;
+      }
+
+      .intro-headline {
+        max-width: 760px;
+      }
+
+      .intro-body,
+      .intro-trust-row,
+      .intro-value-grid {
+        max-width: 620px;
+      }
+
+      .intro-value-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .intro-proof-panel {
+        max-width: 760px;
+        justify-self: start;
+      }
+
+      .preview-footer {
+        grid-template-columns: 1fr;
+      }
+    }
+
     @media (max-width: 800px) {
       .main {
         flex-direction: column;
@@ -1616,7 +1797,7 @@
         padding: 2rem 1.5rem;
       }
 
-      .intro-layout {
+      .intro-value-grid {
         grid-template-columns: 1fr;
       }
 
@@ -1657,8 +1838,13 @@
     }
 
     @media (max-width: 500px) {
+      .page-shell,
+      .main {
+        padding: 0 1rem;
+      }
+
       .topbar {
-        padding: .55rem 1rem;
+        padding: 0;
       }
 
       .brand-logo {
@@ -1670,7 +1856,7 @@
       }
 
       .intro-headline {
-        font-size: clamp(40px, 13vw, 58px);
+        font-size: clamp(32px, 10vw, 46px);
       }
 
       .intro-body {
@@ -1680,6 +1866,24 @@
       .intro-proof-panel {
         padding: 1.1rem;
         border-radius: 22px;
+      }
+
+      .intro-value-card {
+        padding: .9rem;
+      }
+
+      .webinar-modal {
+        padding: .75rem;
+      }
+
+      .webinar-modal-dialog {
+        width: 100%;
+        max-height: calc(100vh - 1.5rem);
+        border-radius: 18px;
+      }
+
+      .webinar-modal-frame {
+        height: calc(100vh - 1.5rem);
       }
 
       .preview-score-row {
@@ -1767,10 +1971,12 @@
 
     <!-- TOP BAR -->
     <header class="topbar">
-      <a href="index.html" class="brand" aria-label="Your Lifestyle Navigator home">
-        <img src="logo.png" alt="Your Lifestyle Navigator logo" class="brand-logo">
-      </a>
-      <span class="topbar-right">HEALTHCARE AI READINESS SCORE™ · v2.0</span>
+      <div class="page-shell topbar-inner">
+        <a href="index.html" class="brand" aria-label="Your Lifestyle Navigator home">
+          <img src="logo.png" alt="Your Lifestyle Navigator logo" class="brand-logo">
+        </a>
+        <span class="topbar-right">HEALTHCARE AI READINESS SCORE™ · v2.0</span>
+      </div>
     </header>
 
     <div class="main">
@@ -1818,10 +2024,10 @@
         <div class="intro-screen" id="intro-screen">
           <div class="intro-layout">
             <div class="intro-copy">
-              <div class="intro-badge anim anim-d1">
+              <!-- <div class="intro-badge anim anim-d1">
                 <div class="intro-badge-dot"></div>Live scoring engine · Instant report
-              </div>
-              <h1 class="intro-headline anim anim-d2">Find out exactly<br>what AI can do<br><em>for your practice.</em>
+              </div> -->
+              <h1 class="intro-headline anim anim-d2">Find out exactly what AI can do<br><em>for your practice.</em>
               </h1>
               <p class="intro-body anim anim-d3">Answer 7 honest questions about your operations. We'll calculate your
                 operational efficiency, burnout risk, monthly revenue leakage, and exit valuation impact — and show you
@@ -1838,6 +2044,16 @@
                 </div>
                 <div class="trust-pill">
                   <div class="trust-pill-dot"></div>Founder-Focused
+                </div>
+              </div>
+              <div class="intro-value-grid anim anim-d4">
+                <div class="intro-value-card">
+                  <div class="intro-value-label">What You Get</div>
+                  <div class="intro-value-copy">A fast, founder-level snapshot of where AI can reclaim time, margin, and enterprise value.</div>
+                </div>
+                <div class="intro-value-card">
+                  <div class="intro-value-label">Best Use</div>
+                  <div class="intro-value-copy">Ideal if you want clarity before deciding what to automate first or whether a strategy call makes sense.</div>
                 </div>
               </div>
               <div class="anim anim-d5">
@@ -1861,12 +2077,12 @@
               </div>
 
               <!-- <div class="preview-score-card">
-            <div class="preview-score-label">Sample executive readout</div>
-            <div class="preview-score-row">
-              <div class="preview-score-value">74<span>/100</span></div>
-              <div class="preview-score-copy">A fast snapshot of operational readiness, burnout risk, revenue leakage, and exit positioning.</div>
-            </div>
-          </div> -->
+                <div class="preview-score-label">Sample executive readout</div>
+                <div class="preview-score-row">
+                  <div class="preview-score-value">74<span>/100</span></div>
+                  <div class="preview-score-copy">A fast snapshot of readiness, burnout risk, revenue leakage, and exit positioning.</div>
+                </div>
+              </div> -->
 
               <div class="report-preview">
                 <div class="preview-item">
@@ -1984,8 +2200,47 @@
     </footer>
   </div>
 
+  <div class="webinar-modal" id="webinar-modal" aria-hidden="true">
+    <div class="webinar-modal-dialog">
+      <button class="webinar-modal-close" type="button" aria-label="Close webinar registration" onclick="closeWebinarPopup()">×</button>
+      <iframe
+        id="webinar-modal-frame"
+        class="webinar-modal-frame"
+        data-src="https://api.growthhub365.com/widget/form/iBjQOZEHc6GRyVwnpklG"
+        title="Webinar Registration Form">
+      </iframe>
+    </div>
+  </div>
+
   <script>
     const BOOKING_URL = 'https://api.growthhub365.com/widget/booking/ELU2FEOcVU21WWdx3jdZ';
+    const WEBINAR_FORM_URL = 'https://api.growthhub365.com/widget/form/iBjQOZEHc6GRyVwnpklG';
+
+    function openWebinarPopup(e) {
+      if (e) e.preventDefault();
+      const modal = document.getElementById('webinar-modal');
+      const frame = document.getElementById('webinar-modal-frame');
+      if (!frame.src) frame.src = frame.dataset.src;
+      modal.classList.add('open');
+      modal.setAttribute('aria-hidden', 'false');
+      document.body.classList.add('modal-open');
+    }
+
+    function closeWebinarPopup() {
+      const modal = document.getElementById('webinar-modal');
+      modal.classList.remove('open');
+      modal.setAttribute('aria-hidden', 'true');
+      document.body.classList.remove('modal-open');
+    }
+
+    document.addEventListener('click', (event) => {
+      const modal = document.getElementById('webinar-modal');
+      if (event.target === modal) closeWebinarPopup();
+    });
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') closeWebinarPopup();
+    });
 
     // ═══════════════════════════════════════════════════
     // QUESTION DATA — 7 Questions with full scoring
@@ -2364,9 +2619,9 @@
 
       // ── CTA copy by tier
       const ctaCopy = {
-        critical: { headline: 'Your practice needs intervention — and the ROI is immediate.', body: 'Based on your score of ' + s.pct + '/100, your practice is losing approximately ' + fmtFull(s.monthlyLeak) + ' per month and your exit valuation is discounted by an estimated ' + fmt(s.uplift) + '. A 30-minute AI Strategy Session with John Smith will produce a specific, prioritized action plan — at no cost to you.', urgency: 'PRIORITY REVIEW AVAILABLE · 2 SPOTS REMAINING FOR CRITICAL-SCORE PRACTICES THIS MONTH' },
-        moderate: { headline: 'You have strong foundations and a clear path to significantly more.', body: 'Your score of ' + s.pct + '/100 shows a practice with real operational potential. The ' + fmtFull(s.monthlyLeak) + '/month leakage and ' + fmt(s.uplift) + ' valuation gap are both fully recoverable. Let\'s build the specific implementation plan together in 30 minutes.', urgency: '3 STRATEGY SESSIONS AVAILABLE THIS MONTH · CALENDAR FILLS QUICKLY' },
-        ready: { headline: 'You are ahead of most. Let\'s turn that into a premium exit.', body: 'Your score of ' + s.pct + '/100 puts you in the top operational tier. The next move is converting that strength into maximum enterprise value. A strategy session with John will focus on exit positioning, EBITDA optimization, and whether the Consult-for-Equity model accelerates your timeline.', urgency: 'EXECUTIVE SESSION · AVAILABLE FOR QUALIFIED PRACTICES GENERATING $3M+' }
+        critical: { headline: 'Your practice needs intervention — and the ROI is immediate.', body: 'Based on your score of ' + s.pct + '/100, your practice is losing approximately ' + fmtFull(s.monthlyLeak) + ' per month and your exit valuation is discounted by an estimated ' + fmt(s.uplift) + '. Register for the webinar and we\'ll show you the specific AI levers that close those gaps first.', urgency: 'WEBINAR REGISTRATION OPEN · LIMITED SEATS AVAILABLE' },
+        moderate: { headline: 'You have strong foundations and a clear path to significantly more.', body: 'Your score of ' + s.pct + '/100 shows a practice with real operational potential. The ' + fmtFull(s.monthlyLeak) + '/month leakage and ' + fmt(s.uplift) + ' valuation gap are both recoverable. Register for the webinar to see the implementation path clearly.', urgency: 'WEBINAR REGISTRATION OPEN · LIMITED SEATS AVAILABLE' },
+        ready: { headline: 'You are ahead of most. Let\'s turn that into a premium exit.', body: 'Your score of ' + s.pct + '/100 puts you in the top operational tier. The next move is converting that strength into maximum enterprise value. Register for the webinar to see how AI optimization sharpens EBITDA and exit positioning.', urgency: 'EXECUTIVE WEBINAR INVITE · RESERVE YOUR SEAT' }
       };
 
       const t = tierLabels[s.tier];
@@ -2522,13 +2777,13 @@
       <h3 class="cta-headline">${cta.headline.replace(/\./, '.<br><em>').replace(/\.$/, '.</em>')}</h3>
       <p class="cta-body">${cta.body}</p>
       <div class="cta-proof-row">
-        <div class="cta-proof-pill">30-minute session</div>
-        <div class="cta-proof-pill">No obligation</div>
-        <div class="cta-proof-pill">Personalized action plan</div>
+        <div class="cta-proof-pill">Webinar access</div>
+        <div class="cta-proof-pill">Actionable frameworks</div>
+        <div class="cta-proof-pill">Reserve your seat</div>
       </div>
       <div class="cta-actions">
-        <a href="${BOOKING_URL}" class="cta-btn secondary" target="_blank" rel="noopener noreferrer">Book a call</a>
-        <a href="${BOOKING_URL}" class="cta-btn" target="_blank" rel="noopener noreferrer">Book my free AI Strategy Session →</a>
+        <a href="${WEBINAR_FORM_URL}" class="cta-btn secondary" onclick="openWebinarPopup(event)">View webinar registration</a>
+        <a href="${WEBINAR_FORM_URL}" class="cta-btn" onclick="openWebinarPopup(event)">Register for the webinar →</a>
       </div>
       <div class="cta-urgency">${cta.urgency}</div>
     </div>
