@@ -1,0 +1,1213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Your Lifestyle Navigator™ — The Healthcare AI Evangelist</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Mono:wght@300;400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy: #0c1332;
+  --navy-mid: #16204f;
+  --navy-light: #243574;
+  --gold: #9b7b46;
+  --gold-light: #c1a06a;
+  --gold-pale: #ece1cc;
+  --cream: #f5f1e8;
+  --white: #ffffff;
+  --gray-100: #efebe2;
+  --gray-200: #ddd5c7;
+  --gray-400: #958c82;
+  --gray-600: #5e594f;
+  --gray-800: #262523;
+  --red-soft: #7c2330;
+  --green-soft: #244537;
+  --amber-soft: #72512a;
+  --font-display: 'Cormorant Garamond', Georgia, serif;
+  --font-body: 'DM Sans', sans-serif;
+  --font-mono: 'DM Mono', monospace;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --shadow-sm: 0 1px 3px rgba(12,19,50,0.08);
+  --shadow-md: 0 8px 24px rgba(12,19,50,0.12);
+  --shadow-lg: 0 18px 44px rgba(12,19,50,0.16);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-body);
+  background: var(--cream);
+  color: var(--gray-800);
+  line-height: 1.7;
+  font-size: 16px;
+  overflow-x: hidden;
+}
+
+/* ─── UTILITIES ─── */
+.container { max-width: 1080px; margin: 0 auto; padding: 0 2rem; }
+.container-narrow { max-width: 760px; margin: 0 auto; padding: 0 2rem; }
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--navy-light);
+  display: block;
+  margin-bottom: .75rem;
+}
+.divider {
+  width: 48px;
+  height: 2px;
+  background: var(--gold);
+  margin: 1.5rem 0;
+}
+.divider.center { margin: 1.5rem auto; }
+.tag {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: .05em;
+  padding: 3px 10px;
+  border-radius: 20px;
+  text-transform: uppercase;
+}
+
+/* ─── BUTTONS ─── */
+.btn-primary {
+  display: inline-block;
+  background: var(--navy-light);
+  color: var(--cream);
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: .04em;
+  padding: 14px 32px;
+  border-radius: var(--radius-md);
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  box-shadow: var(--shadow-sm);
+  transition: background .2s, transform .15s, box-shadow .2s;
+}
+.btn-primary:hover { background: var(--navy-mid); transform: translateY(-1px); box-shadow: var(--shadow-md); }
+
+.btn-secondary {
+  display: inline-block;
+  background: transparent;
+  color: var(--navy);
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 400;
+  letter-spacing: .03em;
+  padding: 13px 28px;
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(36,53,116,.28);
+  cursor: pointer;
+  text-decoration: none;
+  transition: border-color .2s, color .2s, background .2s;
+}
+.btn-secondary:hover { border-color: var(--navy-light); color: var(--navy-light); background: rgba(36,53,116,.04); }
+
+.btn-ghost-light {
+  display: inline-block;
+  background: transparent;
+  color: var(--cream);
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 400;
+  padding: 13px 28px;
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(245,241,232,.35);
+  cursor: pointer;
+  text-decoration: none;
+  transition: border-color .2s, background .2s;
+}
+.btn-ghost-light:hover { border-color: rgba(245,241,232,.76); background: rgba(245,241,232,.08); }
+
+/* ─── NAV ─── */
+.nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  padding: 1rem 0;
+  background: rgba(245,241,232,.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--gray-200);
+}
+.nav-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.nav-logo {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  line-height: 0;
+}
+.nav-logo-img {
+  display: block;
+  height: 54px;
+  width: auto;
+}
+.nav-cta-row { display: flex; align-items: center; gap: .75rem; }
+.nav-link {
+  font-size: 13px;
+  color: var(--gray-600);
+  text-decoration: none;
+  font-weight: 400;
+  transition: color .2s;
+}
+.nav-link:hover { color: var(--navy); }
+
+/* ─── SECTION 1: HERO ─── */
+.hero {
+  padding: 9rem 0 6rem;
+  background:
+    radial-gradient(circle at top right, rgba(193,160,106,.12), transparent 34%),
+    linear-gradient(145deg, #091024 0%, var(--navy) 44%, var(--navy-mid) 100%);
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  top: -120px; right: -120px;
+  width: 600px; height: 600px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(201,168,76,.08) 0%, transparent 70%);
+  pointer-events: none;
+}
+.hero::after {
+  content: '';
+  position: absolute;
+  bottom: -80px; left: -80px;
+  width: 400px; height: 400px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(29,53,87,.6) 0%, transparent 70%);
+  pointer-events: none;
+}
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1fr 380px;
+  gap: 4rem;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+}
+.hero-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--gold-light);
+  display: block;
+  margin-bottom: 1.25rem;
+}
+.hero-headline {
+  font-family: var(--font-display);
+  font-size: clamp(38px, 5vw, 58px);
+  font-weight: 500;
+  color: var(--white);
+  line-height: 1.1;
+  margin-bottom: 1.25rem;
+  letter-spacing: -.01em;
+}
+.hero-headline em {
+  font-style: italic;
+  color: var(--gold-light);
+}
+.hero-subhead {
+  font-size: 17px;
+  color: rgba(250,248,243,.75);
+  line-height: 1.7;
+  margin-bottom: 2rem;
+  font-weight: 300;
+  max-width: 500px;
+}
+.hero-cta-row {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 2.5rem;
+}
+.hero-micro {
+  font-size: 12px;
+  color: rgba(250,248,243,.45);
+  letter-spacing: .03em;
+}
+.hero-photo-frame {
+  position: relative;
+}
+.hero-photo-placeholder {
+  width: 100%;
+  aspect-ratio: 4/5;
+  background: var(--navy-mid);
+  border-radius: var(--radius-xl);
+  border: 1px solid rgba(201,168,76,.2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 1.5rem;
+  position: relative;
+  overflow: hidden;
+}
+.hero-logo-mark {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -60%);
+  width: min(76%, 270px);
+  height: auto;
+  opacity: .95;
+  filter: drop-shadow(0 16px 30px rgba(10,22,40,.28));
+}
+.photo-caption {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+}
+.photo-name {
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--white);
+  display: block;
+  margin-bottom: .25rem;
+}
+.photo-creds {
+  font-size: 12px;
+  color: var(--gold);
+  letter-spacing: .05em;
+  text-transform: uppercase;
+}
+.photo-accent {
+  position: absolute;
+  top: -1px; left: -1px; right: -1px;
+  height: 3px;
+  background: var(--gold);
+  border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+}
+
+/* ─── SECTION 2: CREDIBILITY BAR ─── */
+.cred-bar {
+  background: var(--navy-mid);
+  padding: 1.25rem 0;
+  border-bottom: 1px solid rgba(201,168,76,.15);
+}
+.cred-inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2.5rem;
+  flex-wrap: wrap;
+}
+.cred-item {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  font-size: 12px;
+  color: rgba(250,248,243,.55);
+  letter-spacing: .04em;
+  font-weight: 400;
+  text-transform: uppercase;
+}
+.cred-dot {
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  background: var(--gold);
+  flex-shrink: 0;
+}
+.cred-divider {
+  width: 1px; height: 20px;
+  background: rgba(201,168,76,.2);
+}
+
+/* ─── SECTION 3: THE PROBLEM ─── */
+.problem {
+  padding: 7rem 0;
+  background: var(--cream);
+}
+.problem-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5rem;
+  align-items: start;
+}
+.section-headline {
+  font-family: var(--font-display);
+  font-size: clamp(30px, 4vw, 44px);
+  font-weight: 500;
+  color: var(--navy);
+  line-height: 1.15;
+  letter-spacing: -.01em;
+}
+.section-headline em {
+  font-style: italic;
+  color: var(--gold);
+}
+.body-lead {
+  font-size: 17px;
+  color: var(--gray-600);
+  line-height: 1.75;
+  font-weight: 300;
+}
+.body-text {
+  font-size: 15px;
+  color: var(--gray-600);
+  line-height: 1.8;
+}
+.stat-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.stat-card {
+  background: var(--white);
+  border: 1px solid var(--gray-200);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+  position: relative;
+  overflow: hidden;
+}
+.stat-card::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 3px;
+  background: var(--gold);
+  border-radius: 2px 0 0 2px;
+}
+.stat-number {
+  font-family: var(--font-display);
+  font-size: 40px;
+  font-weight: 600;
+  color: var(--navy);
+  line-height: 1;
+  margin-bottom: .375rem;
+}
+.stat-label {
+  font-size: 13px;
+  color: var(--gray-600);
+  line-height: 1.5;
+}
+.stat-source {
+  font-size: 11px;
+  color: var(--gray-400);
+  margin-top: .5rem;
+  font-style: italic;
+}
+
+/* ─── SECTION 4: NEXT FRAMEWORK ─── */
+.framework {
+  padding: 7rem 0;
+  background: var(--navy);
+  position: relative;
+  overflow: hidden;
+}
+.framework::before {
+  content: 'NEXT';
+  position: absolute;
+  right: -2rem;
+  top: 50%;
+  transform: translateY(-50%);
+  font-family: var(--font-display);
+  font-size: 280px;
+  font-weight: 600;
+  color: rgba(255,255,255,.02);
+  line-height: 1;
+  pointer-events: none;
+  letter-spacing: -.02em;
+}
+.framework-headline {
+  font-family: var(--font-display);
+  font-size: clamp(30px, 4vw, 44px);
+  font-weight: 500;
+  color: var(--white);
+  line-height: 1.15;
+  margin-bottom: .75rem;
+  letter-spacing: -.01em;
+}
+.framework-headline em { font-style: italic; color: var(--gold-light); }
+.framework-sub {
+  font-size: 16px;
+  color: rgba(250,248,243,.6);
+  max-width: 560px;
+  line-height: 1.7;
+  font-weight: 300;
+  margin-bottom: 3.5rem;
+}
+.steps-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.25rem;
+}
+.step-card {
+  background: rgba(255,255,255,.04);
+  border: 1px solid rgba(201,168,76,.15);
+  border-radius: var(--radius-lg);
+  padding: 1.75rem 1.5rem;
+  position: relative;
+  overflow: hidden;
+  transition: border-color .25s, background .25s;
+}
+.step-card:hover {
+  background: rgba(255,255,255,.07);
+  border-color: rgba(201,168,76,.4);
+}
+.step-letter {
+  font-family: var(--font-display);
+  font-size: 52px;
+  font-weight: 600;
+  color: var(--gold);
+  line-height: 1;
+  margin-bottom: .75rem;
+  display: block;
+  opacity: .85;
+}
+.step-title {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--white);
+  margin-bottom: .5rem;
+  letter-spacing: .02em;
+  text-transform: uppercase;
+}
+.step-body {
+  font-size: 13px;
+  color: rgba(250,248,243,.55);
+  line-height: 1.6;
+}
+.step-pain {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(201,168,76,.1);
+  font-size: 12px;
+  color: var(--gold);
+  font-style: italic;
+}
+
+/* ─── SECTION 5: RESULTS ─── */
+.results {
+  padding: 7rem 0;
+  background: var(--gray-100);
+}
+.results-header { text-align: center; margin-bottom: 3.5rem; }
+.results-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-bottom: 3rem;
+}
+.result-card {
+  background: var(--white);
+  border: 1px solid var(--gray-200);
+  border-radius: var(--radius-lg);
+  padding: 2rem 1.75rem;
+  position: relative;
+}
+.result-card-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+.result-metric {
+  font-family: var(--font-display);
+  font-size: 42px;
+  font-weight: 600;
+  color: var(--navy);
+  line-height: 1;
+}
+.result-metric-label {
+  font-size: 12px;
+  color: var(--gray-400);
+  font-style: italic;
+  margin-top: .25rem;
+}
+.result-tag {
+  background: var(--gold-pale);
+  color: var(--amber-soft);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  padding: 3px 8px;
+  border-radius: 20px;
+}
+.result-quote {
+  font-size: 14px;
+  color: var(--gray-600);
+  line-height: 1.65;
+  font-style: italic;
+  border-left: 2px solid var(--gold);
+  padding-left: .875rem;
+  margin: 1rem 0;
+}
+.result-attribution {
+  font-size: 12px;
+  color: var(--gray-400);
+  font-weight: 500;
+}
+.results-disclaimer {
+  text-align: center;
+  font-size: 12px;
+  color: var(--gray-400);
+  font-style: italic;
+}
+
+/* ─── SECTION 6: QUALIFICATION ─── */
+.qualification {
+  padding: 7rem 0;
+  background: var(--cream);
+}
+.qual-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  margin-top: 3rem;
+}
+.qual-box {
+  border-radius: var(--radius-lg);
+  padding: 2rem;
+}
+.qual-box.yes {
+  background: #f0faf4;
+  border: 1px solid #b7dfc5;
+}
+.qual-box.no {
+  background: #fdf4f4;
+  border: 1px solid #e8bebe;
+}
+.qual-box-title {
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 600;
+  margin-bottom: 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: .625rem;
+}
+.qual-box.yes .qual-box-title { color: var(--green-soft); }
+.qual-box.no .qual-box-title { color: var(--red-soft); }
+.qual-check {
+  width: 22px; height: 22px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 12px;
+  flex-shrink: 0;
+}
+.qual-box.yes .qual-check { background: #1a4a2e; color: #f0faf4; }
+.qual-box.no .qual-check { background: #7a1e1e; color: #fdf4f4; }
+.qual-item {
+  display: flex;
+  align-items: flex-start;
+  gap: .75rem;
+  padding: .625rem 0;
+  border-bottom: 1px solid rgba(0,0,0,.06);
+  font-size: 14px;
+  line-height: 1.5;
+}
+.qual-item:last-child { border-bottom: none; }
+.qual-box.yes .qual-item { color: var(--green-soft); }
+.qual-box.no .qual-item { color: var(--red-soft); }
+.qual-dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  margin-top: 7px;
+}
+.qual-box.yes .qual-dot { background: var(--green-soft); }
+.qual-box.no .qual-dot { background: var(--red-soft); }
+
+/* ─── SECTION 7: OFFER STACK ─── */
+.offer {
+  padding: 7rem 0;
+  background: var(--navy);
+  position: relative;
+  overflow: hidden;
+}
+.offer-header { text-align: center; margin-bottom: 3.5rem; }
+.offer-eyebrow {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--gold);
+  display: block;
+  margin-bottom: .875rem;
+}
+.offer-headline {
+  font-family: var(--font-display);
+  font-size: clamp(28px, 3.5vw, 42px);
+  font-weight: 500;
+  color: var(--white);
+  line-height: 1.2;
+  letter-spacing: -.01em;
+  margin-bottom: .75rem;
+}
+.offer-headline em { font-style: italic; color: var(--gold-light); }
+.offer-sub {
+  font-size: 15px;
+  color: rgba(250,248,243,.55);
+  max-width: 520px;
+  margin: 0 auto;
+  font-weight: 300;
+  line-height: 1.7;
+}
+.offer-tiers {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  margin-bottom: 2.5rem;
+}
+.tier-card {
+  background: rgba(255,255,255,.04);
+  border: 1px solid rgba(201,168,76,.12);
+  border-radius: var(--radius-lg);
+  padding: 1.75rem 1.25rem;
+  transition: border-color .2s, background .2s;
+}
+.tier-card:hover {
+  background: rgba(255,255,255,.07);
+  border-color: rgba(201,168,76,.3);
+}
+.tier-card.featured {
+  background: rgba(201,168,76,.08);
+  border: 1.5px solid rgba(201,168,76,.5);
+}
+.tier-badge {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: .07em;
+  text-transform: uppercase;
+  padding: 2px 8px;
+  border-radius: 20px;
+  display: inline-block;
+  margin-bottom: 1rem;
+}
+.tier-card.featured .tier-badge { background: var(--gold); color: var(--navy); }
+.tier-card:not(.featured) .tier-badge { background: rgba(255,255,255,.08); color: rgba(250,248,243,.5); }
+.tier-name {
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--white);
+  margin-bottom: .25rem;
+  line-height: 1.2;
+}
+.tier-price {
+  font-size: 13px;
+  color: var(--gold);
+  margin-bottom: 1rem;
+  font-weight: 400;
+}
+.tier-items {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+}
+.tier-item {
+  font-size: 12px;
+  color: rgba(250,248,243,.55);
+  line-height: 1.5;
+  display: flex;
+  gap: .5rem;
+  align-items: flex-start;
+}
+.tier-item-dot {
+  width: 4px; height: 4px;
+  border-radius: 50%;
+  background: var(--gold);
+  flex-shrink: 0;
+  margin-top: 6px;
+  opacity: .6;
+}
+.offer-addons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+  padding: 1.5rem 0;
+  border-top: 1px solid rgba(201,168,76,.12);
+}
+.addon-item {
+  font-size: 13px;
+  color: rgba(250,248,243,.45);
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+}
+.addon-dot {
+  width: 4px; height: 4px;
+  border-radius: 50%;
+  background: var(--gold);
+  opacity: .5;
+}
+
+/* ─── SECTION 8: FINAL CTA ─── */
+.final-cta {
+  padding: 8rem 0;
+  background: var(--cream);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.final-cta::before {
+  content: '';
+  position: absolute;
+  top: -100px; left: 50%;
+  transform: translateX(-50%);
+  width: 700px; height: 300px;
+  background: radial-gradient(ellipse, rgba(201,168,76,.06) 0%, transparent 70%);
+  pointer-events: none;
+}
+.final-cta-content { position: relative; z-index: 1; }
+.final-headline {
+  font-family: var(--font-display);
+  font-size: clamp(32px, 5vw, 56px);
+  font-weight: 500;
+  color: var(--navy);
+  line-height: 1.1;
+  margin-bottom: 1rem;
+  letter-spacing: -.01em;
+}
+.final-headline em { font-style: italic; color: var(--gold); }
+.final-sub {
+  font-size: 17px;
+  color: var(--gray-600);
+  max-width: 520px;
+  margin: 0 auto 2rem;
+  line-height: 1.7;
+  font-weight: 300;
+}
+.final-cta-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 1.5rem;
+}
+.scarcity-note {
+  font-size: 13px;
+  color: var(--gray-600);
+  font-style: italic;
+}
+.scarcity-note strong {
+  color: var(--navy);
+  font-style: normal;
+  font-weight: 500;
+}
+.footer-strip {
+  background: var(--navy);
+  padding: 1.5rem 0;
+  text-align: center;
+  font-size: 12px;
+  color: rgba(250,248,243,.35);
+  letter-spacing: .04em;
+}
+.footer-strip a { color: var(--gold); text-decoration: none; }
+
+/* ─── ANIMATIONS ─── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.fade-up { opacity: 0; animation: fadeUp .7s ease forwards; }
+.fade-up:nth-child(1) { animation-delay: .1s; }
+.fade-up:nth-child(2) { animation-delay: .25s; }
+.fade-up:nth-child(3) { animation-delay: .4s; }
+.fade-up:nth-child(4) { animation-delay: .55s; }
+.fade-up:nth-child(5) { animation-delay: .7s; }
+
+@media (max-width: 900px) {
+  .hero-grid { grid-template-columns: 1fr; }
+  .hero-photo-frame { max-width: 320px; margin: 0 auto; }
+  .problem-grid { grid-template-columns: 1fr; gap: 3rem; }
+  .steps-grid { grid-template-columns: 1fr 1fr; }
+  .results-grid { grid-template-columns: 1fr; }
+  .qual-grid { grid-template-columns: 1fr; }
+  .offer-tiers { grid-template-columns: 1fr 1fr; }
+}
+
+@media (max-width: 600px) {
+  .steps-grid { grid-template-columns: 1fr; }
+  .offer-tiers { grid-template-columns: 1fr; }
+  .cred-inner { gap: 1rem; }
+  .cred-divider { display: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="container">
+    <div class="nav-inner">
+      <a href="#" class="nav-logo" aria-label="Your Lifestyle Navigator home">
+        <img src="logo.png" alt="Your Lifestyle Navigator logo" class="nav-logo-img">
+      </a>
+      <div class="nav-cta-row">
+        <a href="#offer" class="nav-link">Services</a>
+        <a href="#results" class="nav-link">Results</a>
+        <a href="https://api.growthhub365.com/widget/booking/ELU2FEOcVU21WWdx3jdZ" class="btn-primary" style="padding:10px 22px;font-size:13px;" target="_blank" rel="noopener noreferrer">Book strategy session</a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- ═══════════════════════════════════════
+     SECTION 1: HERO
+════════════════════════════════════════ -->
+<section class="hero" id="top">
+  <div class="container">
+    <div class="hero-grid">
+      <div>
+        <span class="hero-eyebrow fade-up">The Healthcare AI Evangelist</span>
+        <h1 class="hero-headline fade-up">
+          Stop working<br>
+          <em>in</em> your practice.<br>
+          Start building<br>
+          an asset.
+        </h1>
+        <p class="hero-subhead fade-up">
+          Your Lifestyle Navigator™ helps healthcare entrepreneurs eliminate administrative burnout, drive 30% profit margins, and build exit-ready wealth — through the AI-powered NEXT Framework™.
+        </p>
+        <div class="hero-cta-row fade-up">
+          <a href="https://api.growthhub365.com/widget/booking/ELU2FEOcVU21WWdx3jdZ" class="btn-primary" target="_blank" rel="noopener noreferrer">Book your free AI strategy session</a>
+          <a href="readiness-score.html" class="btn-ghost-light">Take the AI Readiness Score™</a>
+        </div>
+        <p class="hero-micro fade-up">No sales pitch. No obligation. 30 minutes. Leave with a clear action plan.</p>
+      </div>
+
+      <div class="hero-photo-frame fade-up">
+        <div class="hero-photo-placeholder">
+          <div class="photo-accent"></div>
+          <img src="logo.png" alt="Your Lifestyle Navigator logo" class="hero-logo-mark">
+          <div class="photo-caption">
+            <span class="photo-name">John S. Smith Jr.</span>
+            <span class="photo-creds">RN · BSN · CEPA</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     SECTION 2: CREDIBILITY BAR
+════════════════════════════════════════ -->
+<div class="cred-bar">
+  <div class="container">
+    <div class="cred-inner">
+      <div class="cred-item"><div class="cred-dot"></div>RN · BSN · CEPA Certified</div>
+      <div class="cred-divider"></div>
+      <div class="cred-item"><div class="cred-dot"></div>As featured in Behavioral Health Business</div>
+      <div class="cred-divider"></div>
+      <div class="cred-item"><div class="cred-dot"></div>Healthcare AI Evangelist</div>
+      <div class="cred-divider"></div>
+      <div class="cred-item"><div class="cred-dot"></div>The NEXT Framework™</div>
+      <div class="cred-divider"></div>
+      <div class="cred-item"><div class="cred-dot"></div>Consult-for-Equity Model</div>
+      <div class="cred-divider"></div>
+      <div class="cred-item"><div class="cred-dot"></div>DMV · Nationwide</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════
+     SECTION 3: THE PROBLEM
+════════════════════════════════════════ -->
+<section class="problem" id="problem">
+  <div class="container">
+    <div class="problem-grid">
+      <div>
+        <span class="eyebrow">The hard truth</span>
+        <h2 class="section-headline">The healthcare industry is broken.<br><em>Your business doesn't have to be.</em></h2>
+        <div class="divider"></div>
+        <p class="body-lead" style="margin-bottom:1.25rem;">
+          You started your healthcare practice to make an impact — not to spend 70 hours a week managing billing errors, fighting prior authorizations, and watching your clinical team burn out.
+        </p>
+        <p class="body-text" style="margin-bottom:1.25rem;">
+          The real problem isn't a lack of effort. You're working harder than almost anyone you know. The problem is that you are running a manual business in an era that demands intelligent systems — and every day you delay costs you real money, real margins, and real enterprise value.
+        </p>
+        <p class="body-text" style="margin-bottom:1.25rem;">
+          Traditional consultants hand you a strategy binder and leave you to figure out the implementation. Software vendors sell you tools your overworked team doesn't have time to adopt. Neither solves the root problem.
+        </p>
+        <p class="body-text">
+          At Your Lifestyle Navigator™, we don't just advise — we implement. Through the proprietary NEXT Framework™, we integrate intelligent automation into your core operations, transform your practice from a burnout factory into a high-value platform, and build the exit-ready business you originally envisioned.
+        </p>
+      </div>
+      <div class="stat-cards">
+        <div class="stat-card">
+          <div class="stat-number">93%</div>
+          <div class="stat-label">of behavioral health staff experience burnout — driven not by patient care, but by administrative overload.</div>
+          <div class="stat-source">National Council for Mental Wellbeing</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">$505B</div>
+          <div class="stat-label">projected healthcare AI market by 2033. The practices that automate now will own the market. The rest will be acquired at a discount.</div>
+          <div class="stat-source">Grand View Research, 2025</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">68%</div>
+          <div class="stat-label">of clinical staff say administrative tasks directly detract from patient care — and from your bottom line.</div>
+          <div class="stat-source">National Council for Mental Wellbeing</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">2x</div>
+          <div class="stat-label">the EBITDA multiple commanded by tech-enabled, AI-optimized practices versus manual operations at exit. This is the wealth gap between founders who act and those who wait.</div>
+          <div class="stat-source">YLN proprietary analysis</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     SECTION 4: NEXT FRAMEWORK
+════════════════════════════════════════ -->
+<section class="framework" id="framework">
+  <div class="container">
+    <div style="max-width:640px;margin-bottom:1rem;">
+      <span class="eyebrow" style="color:var(--gold);">Our proprietary methodology</span>
+      <h2 class="framework-headline">The NEXT Framework™ —<br><em>four steps from grind to exit.</em></h2>
+    </div>
+    <p class="framework-sub">
+      Most AI consultants tell you what to buy. We tell you exactly where you are leaking money, implement the fix, and measure the result. Every engagement begins with Navigate and ends with a business that runs without you.
+    </p>
+    <div class="steps-grid">
+      <div class="step-card">
+        <span class="step-letter">N</span>
+        <div class="step-title">Navigate</div>
+        <div class="step-body">We audit every workflow — intake, billing, scheduling, documentation — and map exactly where manual intervention is costing you time and margin. No assumptions. No guesswork. Precision diagnosis.</div>
+        <div class="step-pain">Pain solved: "I don't even know where to start with AI."</div>
+      </div>
+      <div class="step-card">
+        <span class="step-letter">E</span>
+        <div class="step-title">Evaluate</div>
+        <div class="step-body">We match your specific bottlenecks to the right AI tools — ones that integrate seamlessly with your existing EHR, not ones that require a 12-month IT project. No shelfware. No vendor sales pitches.</div>
+        <div class="step-pain">Pain solved: "Every vendor promises ROI I never see."</div>
+      </div>
+      <div class="step-card">
+        <span class="step-letter">X</span>
+        <div class="step-title">eXecute</div>
+        <div class="step-body">Done for you. We handle the technical integration, configure the automation rules, run the staff training, and ensure your clinical operations continue uninterrupted. You focus on patients and strategy.</div>
+        <div class="step-pain">Pain solved: "I don't have time to manage an implementation."</div>
+      </div>
+      <div class="step-card">
+        <span class="step-letter">T</span>
+        <div class="step-title">Transfer</div>
+        <div class="step-body">We build systems that work without you. Scalable platforms. Documented SOPs. EBITDA-improving operations. Your staff move from data-entry clerks to patient-experience managers. You move from operator to CEO.</div>
+        <div class="step-pain">Pain solved: "My business can't run without me."</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     SECTION 5: RESULTS
+════════════════════════════════════════ -->
+<section class="results" id="results">
+  <div class="container">
+    <div class="results-header">
+      <span class="eyebrow">Results that speak for themselves</span>
+      <h2 class="section-headline" style="color:var(--navy);">Real practices.<br><em>Real numbers.</em></h2>
+      <div class="divider center"></div>
+      <p class="body-text" style="max-width:520px;margin:0 auto;color:var(--gray-600);">Vague testimonials don't build practices. Here is what the NEXT Framework™ actually produces — in the specific metrics that matter to buyers, operators, and healthcare founders.</p>
+    </div>
+    <div class="results-grid">
+      <div class="result-card">
+        <div class="result-card-top">
+          <div>
+            <div class="result-metric">34%</div>
+            <div class="result-metric-label">admin cost reduction</div>
+          </div>
+          <div class="result-tag">Operational</div>
+        </div>
+        <p class="result-quote">"We eliminated 22 hours of weekly manual billing work in 60 days. The team finally has time to focus on patients, not paperwork."</p>
+        <div class="result-attribution">Behavioral Health Practice · $3.2M revenue · DMV Region</div>
+      </div>
+      <div class="result-card">
+        <div class="result-card-top">
+          <div>
+            <div class="result-metric">$180K</div>
+            <div class="result-metric-label">EBITDA improvement, Q1</div>
+          </div>
+          <div class="result-tag">Financial</div>
+        </div>
+        <p class="result-quote">"John's team found $180,000 in annual margin improvement in our first quarter. It didn't come from cutting staff — it came from stopping the leaks we didn't know existed."</p>
+        <div class="result-attribution">Multi-site Healthcare Group · $7.8M revenue · Southeast</div>
+      </div>
+      <div class="result-card">
+        <div class="result-card-top">
+          <div>
+            <div class="result-metric">$10K</div>
+            <div class="result-metric-label">new MRR in 60 days</div>
+          </div>
+          <div class="result-tag">Growth</div>
+        </div>
+        <p class="result-quote">"We launched a new service line with zero new back-office hires. The AI infrastructure YLN built handled intake, billing, and scheduling from day one."</p>
+        <div class="result-attribution">Outpatient Mental Health Practice · $1.1M revenue · Mid-Atlantic</div>
+      </div>
+    </div>
+    <p class="results-disclaimer">Results vary by practice size, market, and implementation scope. These figures represent documented client outcomes under the NEXT Framework™ advisory engagement.</p>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     SECTION 6: QUALIFICATION
+════════════════════════════════════════ -->
+<section class="qualification" id="qualify">
+  <div class="container-narrow">
+    <span class="eyebrow">Be honest with yourself</span>
+    <h2 class="section-headline" style="color:var(--navy);">This is for visionaries.<br><em>Not everyone qualifies.</em></h2>
+    <div class="divider"></div>
+    <p class="body-text" style="margin-bottom:2rem;">
+      We work with a small number of healthcare founders at any given time because real transformation requires real partnership. Before you book a strategy session, read this carefully. If you are in the left column, we should talk immediately. If you are in the right column, we are not the right fit right now — and we respect you enough to tell you that directly.
+    </p>
+    <div class="qual-grid">
+      <div class="qual-box yes">
+        <div class="qual-box-title">
+          <div class="qual-check">✓</div>
+          This is for you if…
+        </div>
+        <div class="qual-item"><div class="qual-dot"></div>You run a healthcare or behavioral health company generating $1M–$20M+ in annual revenue</div>
+        <div class="qual-item"><div class="qual-dot"></div>You are the bottleneck in your own business and you know it</div>
+        <div class="qual-item"><div class="qual-dot"></div>You want AI to work for you — not another software demo</div>
+        <div class="qual-item"><div class="qual-dot"></div>You are serious about scaling, building wealth, and eventually exiting on your terms</div>
+        <div class="qual-item"><div class="qual-dot"></div>You are willing to invest in systems that will outlive your daily involvement</div>
+        <div class="qual-item"><div class="qual-dot"></div>You want a partner who is invested in your outcome — not a vendor on a monthly invoice</div>
+      </div>
+      <div class="qual-box no">
+        <div class="qual-box-title">
+          <div class="qual-check">✕</div>
+          This is NOT for you if…
+        </div>
+        <div class="qual-item"><div class="qual-dot"></div>You are looking for a quick fix or a magic software tool</div>
+        <div class="qual-item"><div class="qual-dot"></div>You are not willing to change how your operations are run</div>
+        <div class="qual-item"><div class="qual-dot"></div>You want advice but not accountability</div>
+        <div class="qual-item"><div class="qual-dot"></div>You believe hiring more staff will solve a systems problem</div>
+        <div class="qual-item"><div class="qual-dot"></div>Your practice is generating under $500K and you are not yet post-revenue</div>
+        <div class="qual-item"><div class="qual-dot"></div>You expect results without committing to the implementation process</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     SECTION 7: OFFER STACK
+════════════════════════════════════════ -->
+<section class="offer" id="offer">
+  <div class="container">
+    <div class="offer-header">
+      <span class="offer-eyebrow">Four ways to work with YLN</span>
+      <h2 class="offer-headline">A path for every stage.<br><em>A result for every practice.</em></h2>
+      <p class="offer-sub">We built our engagement model to meet you where you are — and take you where you want to go. Every client path leads to the same destination: a scalable, profitable, exit-ready healthcare asset.</p>
+    </div>
+    <div class="offer-tiers">
+      <div class="tier-card">
+        <span class="tier-badge">Entry</span>
+        <div class="tier-name">AI Readiness &amp; Strategy Session</div>
+        <div class="tier-price">$500 – $2,500 · or free for qualified leads</div>
+        <ul class="tier-items">
+          <li class="tier-item"><div class="tier-item-dot"></div>Full AI readiness audit of your operations</li>
+          <li class="tier-item"><div class="tier-item-dot"></div>Identify your top 3 highest-ROI automations</li>
+          <li class="tier-item"><div class="tier-item-dot"></div>Introduction to the NEXT Framework™</li>
+          <li class="tier-item"><div class="tier-item-dot"></div>60–90 minute deep-dive with John</li>
+          <li class="tier-item"><div class="tier-item-dot"></div>Clear next-step roadmap, no obligation</li>
+        </ul>
+      </div>
+      <div class="tier-card">
+        <span class="tier-badge">Sprint</span>
+        <div class="tier-name">AI Implementation Sprint</div>
+        <div class="tier-price">$5,000 – $15,000 · one-time</div>
+        <ul class="tier-items">
+          <li class="tier-item"><div class="tier-item-dot"></div>30–60 day done-for-you AI deployment</li>
+          <li class="tier-item"><div class="tier-item-dot"></div>Automated intake, scheduling, billing</li>
+          <li class="tier-item"><div class="tier-item-dot"></div>CRM + EHR integration</li>
+          <li class="tier-item"><div class="tier-item-dot"></div>KPI dashboard setup</li>
+          <li class="tier-item"><div class="tier-item-dot"></div>Staff training and adoption support</li>
+        </ul>
+      </div>
+      <div class="tier-card featured">
+        <span class="tier-badge">Core offer</span>
+        <div class="tier-name">AI + NEXT Growth Advisory</div>
+        <div class="tier-price">$7,500 – $15,000 / month</div>
+        <ul class="tier-items">
+          <li class="tier-item"><div class="tier-item-dot"></div>Ongoing AI optimization + advanced automation</li>
+          <li class="tier-item"><div class="tier-item-dot"></div>Scaling strategy + operational systems</li>
+          <li class="tier-item"><div class="tier-item-dot"></div>Profit optimization + capital allocation</li>
+          <li class="tier-item"><div class="tier-item-dot"></div>EBITDA improvement + exit planning</li>
+          <li class="tier-item"><div class="tier-item-dot"></div>Succession strategy + legacy planning</li>
+        </ul>
+      </div>
+      <div class="tier-card">
+        <span class="tier-badge">Elite</span>
+        <div class="tier-name">Consulting for Equity (C4E)</div>
+        <div class="tier-price">$2,000 – $5,000 / month + 5–20% equity</div>
+        <ul class="tier-items">
+          <li class="tier-item"><div class="tier-item-dot"></div>Full AI transformation + deep involvement</li>
+          <li class="tier-item"><div class="tier-item-dot"></div>Platform roll-up and M&amp;A strategy</li>
+          <li class="tier-item"><div class="tier-item-dot"></div>Exit execution and buyer positioning</li>
+          <li class="tier-item"><div class="tier-item-dot"></div>Revenue $3M+ required to qualify</li>
+          <li class="tier-item"><div class="tier-item-dot"></div>We succeed when you succeed — full stop</li>
+        </ul>
+      </div>
+    </div>
+    <div class="offer-addons">
+      <span class="addon-item"><div class="addon-dot"></div>AI Workshops for Teams · $2K–$10K</span>
+      <span class="addon-item"><div class="addon-dot"></div>Speaking Engagements · $5K–$25K</span>
+      <span class="addon-item"><div class="addon-dot"></div>AI Playbook (Digital) · Available Q3 2026</span>
+      <span class="addon-item"><div class="addon-dot"></div>Webinar Funnel Build · Included in Advisory</span>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     SECTION 8: FINAL CTA
+════════════════════════════════════════ -->
+<section class="final-cta" id="final-cta">
+  <div class="container">
+    <div class="final-cta-content">
+      <span class="eyebrow" style="display:block;text-align:center;">The decision point</span>
+      <h2 class="final-headline">
+        What's NEXT<br>for your<br><em>healthcare business?</em>
+      </h2>
+      <p class="final-sub">
+        You can continue with the status quo — fighting billing errors, managing high turnover, and working 70-hour weeks in a business that still depends entirely on you. Or you can step into the CEO role, build a scalable asset, and start turning your business success into real personal wealth.
+      </p>
+      <p class="final-sub" style="font-size:15px;margin-bottom:2rem;">
+        The strategy session is free. It is 30 minutes. You will leave with a specific, prioritized AI action plan for your practice — regardless of whether we ever work together.
+      </p>
+      <div class="final-cta-row">
+        <a href="https://api.growthhub365.com/widget/booking/ELU2FEOcVU21WWdx3jdZ" class="btn-primary" style="font-size:15px;padding:16px 36px;" target="_blank" rel="noopener noreferrer">Book your free AI strategy session</a>
+        <a href="readiness-score.html" class="btn-secondary">Take the AI Readiness Score™ first</a>
+      </div>
+      <p class="scarcity-note"><strong>Three strategy sessions available this month.</strong> John reviews each practice personally before the call. When the spots are filled, the next availability opens the following month.</p>
+    </div>
+  </div>
+</section>
+
+<div class="footer-strip">
+  <div class="container">
+    © 2026 Your Lifestyle Navigator™ · The Healthcare AI Evangelist &nbsp;|&nbsp; John S. Smith Jr., RN, BSN, CEPA &nbsp;|&nbsp; <a href="#">yourlifestylenavigator.com</a> &nbsp;|&nbsp; DMV Region + Nationwide
+  </div>
+</div>
+
+</body>
+</html>

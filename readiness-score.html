@@ -1,0 +1,2628 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Healthcare AI Readiness Score™ — Your Lifestyle Navigator™</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Mono:wght@300;400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --ink: #0c1332;
+      --ink-mid: #16204f;
+      --ink-soft: #243574;
+      --paper: #f5f1e8;
+      --paper-warm: #eee7db;
+      --paper-mid: #d9d0c1;
+      --gold: #9b7b46;
+      --gold-bright: #c1a06a;
+      --gold-pale: #ece1cc;
+      --gold-line: #a88653;
+      --red: #7c2330;
+      --red-pale: #fdf0f0;
+      --amber: #72512a;
+      --amber-pale: #fdf5e6;
+      --green: #244537;
+      --green-pale: #edf4ef;
+      --blue: #243574;
+      --blue-pale: #eef1f9;
+      --white: #ffffff;
+      --font-display: 'Cormorant Garamond', Georgia, serif;
+      --font-ui: 'DM Sans', sans-serif;
+      --font-mono: 'DM Mono', monospace;
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--font-ui);
+      background:
+        radial-gradient(circle at top right, rgba(193, 160, 106, .12), transparent 20%),
+        linear-gradient(180deg, #fbf8f2 0%, var(--paper) 100%);
+      color: var(--ink);
+      min-height: 100vh;
+      font-size: 15px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ─── LAYOUT ─── */
+    .shell {
+      min-height: 100vh;
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+    }
+
+    .topbar {
+      background: rgba(255, 255, 255, .96);
+      padding: .65rem 1.6rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid rgba(12, 19, 50, .08);
+      backdrop-filter: blur(10px);
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      text-decoration: none;
+      line-height: 0;
+      background: transparent;
+      border-radius: 12px;
+      padding: 0;
+    }
+
+    .brand:hover {
+      opacity: 0.85;
+    }
+
+    .brand-logo {
+      display: block;
+      height: 56px;
+      width: auto;
+    }
+
+    .topbar-right {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      color: rgba(12, 19, 50, .48);
+      letter-spacing: .08em;
+    }
+
+    .main {
+      display: flex;
+      align-items: stretch;
+    }
+
+    /* ─── LEFT RAIL ─── */
+    .left-rail {
+      width: 320px;
+      flex-shrink: 0;
+      background:
+        radial-gradient(circle at top right, rgba(193, 160, 106, .1), transparent 28%),
+        linear-gradient(180deg, var(--ink-mid) 0%, var(--ink) 100%);
+      padding: 3rem 2.5rem;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .left-rail::before {
+      content: '';
+      position: absolute;
+      bottom: -80px;
+      right: -80px;
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(184, 134, 45, .06) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .rail-eyebrow {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--gold-bright);
+      margin-bottom: 1.5rem;
+      display: block;
+    }
+
+    .rail-title {
+      font-family: var(--font-display);
+      font-size: 28px;
+      color: var(--paper);
+      line-height: 1.2;
+      margin-bottom: .5rem;
+    }
+
+    .rail-title em {
+      font-style: italic;
+      color: var(--gold-bright);
+    }
+
+    .rail-sub {
+      font-size: 13px;
+      color: rgba(247, 245, 240, .5);
+      line-height: 1.7;
+      font-weight: 400;
+      margin-bottom: 2.5rem;
+    }
+
+    .rail-meta {
+      display: flex;
+      flex-direction: column;
+      gap: .875rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .meta-item {
+      display: flex;
+      align-items: center;
+      gap: .75rem;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: rgba(247, 245, 240, .45);
+      letter-spacing: .04em;
+    }
+
+    .meta-icon {
+      width: 28px;
+      height: 28px;
+      border-radius: 6px;
+      background: rgba(184, 134, 45, .12);
+      border: 1px solid rgba(184, 134, 45, .2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      flex-shrink: 0;
+    }
+
+    .progress-section {
+      margin-top: auto;
+    }
+
+    .progress-label-row {
+      display: flex;
+      justify-content: space-between;
+      font-family: var(--font-mono);
+      font-size: 10px;
+      color: rgba(247, 245, 240, .35);
+      letter-spacing: .06em;
+      margin-bottom: .5rem;
+    }
+
+    .progress-track {
+      height: 3px;
+      background: rgba(247, 245, 240, .08);
+      border-radius: 2px;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: var(--gold-bright);
+      border-radius: 2px;
+      transition: width .4s cubic-bezier(.4, 0, .2, 1);
+      width: 0%;
+    }
+
+    .step-dots {
+      display: flex;
+      gap: 6px;
+      margin-top: 1rem;
+    }
+
+    .step-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: rgba(247, 245, 240, .15);
+      transition: background .25s;
+    }
+
+    .step-dot.done {
+      background: var(--gold-bright);
+    }
+
+    .step-dot.active {
+      background: var(--gold-bright);
+      box-shadow: 0 0 0 2px rgba(212, 165, 58, .3);
+    }
+
+    /* ─── RIGHT CONTENT ─── */
+    .right-content {
+      flex: 1;
+      width: 100%;
+      max-width: 1120px;
+      padding: 3.25rem 3.25rem 3rem;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ─── INTRO SCREEN ─── */
+    .intro-screen {
+      width: 100%;
+    }
+
+    .intro-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(360px, .9fr);
+      gap: 2rem;
+      align-items: start;
+    }
+
+    .intro-copy {
+      max-width: 640px;
+    }
+
+    .intro-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--gold-pale);
+      border: 1px solid rgba(184, 134, 45, .25);
+      border-radius: 4px;
+      padding: 4px 12px;
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--amber);
+      margin-bottom: 1.75rem;
+    }
+
+    .intro-badge-dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--gold);
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+
+      0%,
+      100% {
+        opacity: 1;
+      }
+
+      50% {
+        opacity: .4;
+      }
+    }
+
+    .intro-headline {
+      font-family: var(--font-display);
+      font-size: clamp(48px, 6vw, 84px);
+      color: var(--ink);
+      line-height: .98;
+      letter-spacing: -.035em;
+      margin-bottom: 1rem;
+    }
+
+    .intro-headline em {
+      font-style: italic;
+      color: var(--gold);
+    }
+
+    .intro-body {
+      font-size: 18px;
+      color: #4f4b46;
+      line-height: 1.9;
+      max-width: 580px;
+      margin-bottom: 2rem;
+    }
+
+    .intro-trust-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .75rem;
+      margin-bottom: 2rem;
+    }
+
+    .trust-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      padding: .7rem .95rem;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, .82);
+      border: 1px solid rgba(12, 19, 50, .08);
+      box-shadow: 0 8px 24px rgba(12, 19, 50, .05);
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+    }
+
+    .trust-pill-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--gold);
+      flex-shrink: 0;
+    }
+
+    .intro-proof-panel {
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, .98) 0%, rgba(255, 255, 255, .92) 100%);
+      border: 1px solid rgba(12, 19, 50, .08);
+      border-radius: 28px;
+      padding: 1.5rem;
+      box-shadow: 0 20px 50px rgba(12, 19, 50, .1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .intro-proof-panel::before {
+      content: '';
+      position: absolute;
+      inset: 0 0 auto 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--gold-light), var(--ink-soft));
+    }
+
+    .preview-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .preview-kicker {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--amber);
+    }
+
+    .preview-status {
+      padding: .35rem .7rem;
+      border-radius: 999px;
+      background: var(--gold-pale);
+      color: var(--amber);
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    .preview-score-card {
+      background: linear-gradient(145deg, var(--ink) 0%, var(--ink-mid) 100%);
+      border-radius: 22px;
+      padding: 1.35rem;
+      color: var(--paper);
+      margin-bottom: 1rem;
+      box-shadow: inset 0 0 0 1px rgba(245, 241, 232, .05);
+    }
+
+    .preview-score-label {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: rgba(245, 241, 232, .54);
+      margin-bottom: .65rem;
+    }
+
+    .preview-score-row {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .preview-score-value {
+      font-family: var(--font-display);
+      font-size: 72px;
+      line-height: .88;
+      color: var(--paper);
+    }
+
+    .preview-score-value span {
+      font-size: 24px;
+      opacity: .45;
+    }
+
+    .preview-score-copy {
+      max-width: 180px;
+      font-size: 13px;
+      line-height: 1.6;
+      color: rgba(245, 241, 232, .72);
+    }
+
+    .report-preview {
+      background: var(--white);
+      border: 1px solid rgba(12, 19, 50, .08);
+      border-radius: 18px;
+      padding: 1.2rem 1.25rem;
+      margin-bottom: 1rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    .preview-item {
+      display: flex;
+      align-items: flex-start;
+      gap: .625rem;
+      padding: .2rem 0;
+    }
+
+    .preview-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      flex-shrink: 0;
+      margin-top: .45rem;
+    }
+
+    .preview-text {
+      font-size: 15px;
+      color: var(--ink-soft);
+      font-weight: 600;
+      margin-bottom: .15rem;
+    }
+
+    .preview-sub {
+      font-size: 12px;
+      color: #7f7a73;
+      margin-top: 1px;
+      line-height: 1.55;
+    }
+
+    .preview-footer {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: .9rem;
+    }
+
+    .preview-footer-card {
+      border-radius: 18px;
+      background: var(--paper);
+      border: 1px solid rgba(12, 19, 50, .06);
+      padding: 1rem;
+    }
+
+    .preview-footer-label {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: .45rem;
+    }
+
+    .preview-footer-copy {
+      font-size: 13px;
+      line-height: 1.65;
+      color: #5f5a53;
+    }
+
+    .btn-start {
+      display: inline-flex;
+      align-items: center;
+      gap: .75rem;
+      background: var(--ink);
+      color: var(--paper);
+      font-family: var(--font-ui);
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: .03em;
+      padding: 14px 28px;
+      border-radius: 14px;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 16px 34px rgba(12, 19, 50, .18);
+      transition: background .2s, transform .15s, box-shadow .2s;
+    }
+
+    .btn-start:hover {
+      background: var(--ink-soft);
+      transform: translateY(-1px);
+      box-shadow: 0 20px 40px rgba(12, 19, 50, .2);
+    }
+
+    .btn-start-arrow {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: var(--gold-bright);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 10px;
+      color: var(--ink);
+      flex-shrink: 0;
+    }
+
+    .intro-actions {
+      display: flex;
+      align-items: center;
+      gap: .75rem;
+      flex-wrap: wrap;
+    }
+
+    .btn-book-call {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 46px;
+      padding: 14px 22px;
+      border-radius: 14px;
+      border: 1px solid rgba(14, 14, 14, .12);
+      background: var(--white);
+      color: var(--ink);
+      font-family: var(--font-ui);
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: .02em;
+      text-decoration: none;
+      transition: border-color .2s, transform .15s, background .2s;
+    }
+
+    .btn-book-call:hover {
+      border-color: var(--gold-line);
+      background: var(--gold-pale);
+      transform: translateY(-1px);
+    }
+
+    .intro-microcopy {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: #8a847c;
+      margin-top: .875rem;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    .intro-return-link {
+      display: inline-flex;
+      align-items: center;
+      gap: .45rem;
+      margin-top: 1rem;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      color: var(--amber);
+      text-decoration: none;
+    }
+
+    .intro-return-link:hover {
+      color: var(--ink);
+    }
+
+    /* ─── QUESTION SCREEN ─── */
+    .question-screen {
+      display: none;
+      flex-direction: column;
+      width: 100%;
+      max-width: 760px;
+    }
+
+    .q-header {
+      margin-bottom: 2rem;
+    }
+
+    .q-counter {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: .08em;
+      color: var(--gold);
+      text-transform: uppercase;
+      margin-bottom: .625rem;
+    }
+
+    .q-text {
+      font-family: var(--font-display);
+      font-size: clamp(20px, 2.5vw, 28px);
+      color: var(--ink);
+      line-height: 1.25;
+      letter-spacing: -.01em;
+      margin-bottom: .625rem;
+    }
+
+    .q-why {
+      font-size: 13px;
+      color: #888;
+      line-height: 1.6;
+      border-left: 2px solid var(--paper-mid);
+      padding-left: .875rem;
+      font-style: italic;
+    }
+
+    .options-list {
+      display: flex;
+      flex-direction: column;
+      gap: .625rem;
+      margin-bottom: 2rem;
+    }
+
+    .option-btn {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      padding: 1rem 1.25rem;
+      border: 1.5px solid var(--paper-mid);
+      border-radius: 10px;
+      background: var(--white);
+      cursor: pointer;
+      text-align: left;
+      transition: border-color .2s, background .2s, transform .1s;
+      font-family: var(--font-ui);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .option-btn::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 0;
+      background: var(--gold-pale);
+      transition: width .2s;
+    }
+
+    .option-btn:hover {
+      border-color: var(--gold-line);
+      transform: translateX(3px);
+    }
+
+    .option-btn:hover::before {
+      width: 4px;
+    }
+
+    .option-btn.selected {
+      border-color: var(--gold);
+      background: var(--gold-pale);
+    }
+
+    .option-btn.selected::before {
+      width: 4px;
+      background: var(--gold);
+    }
+
+    .opt-indicator {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      border: 1.5px solid var(--paper-mid);
+      flex-shrink: 0;
+      margin-top: 1px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: border-color .2s, background .2s;
+      position: relative;
+      z-index: 1;
+    }
+
+    .option-btn.selected .opt-indicator {
+      border-color: var(--gold);
+      background: var(--gold);
+    }
+
+    .opt-check {
+      display: none;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--white);
+    }
+
+    .option-btn.selected .opt-check {
+      display: block;
+    }
+
+    .opt-text {
+      font-size: 14px;
+      color: var(--ink-soft);
+      line-height: 1.5;
+      font-weight: 400;
+      position: relative;
+      z-index: 1;
+      flex: 1;
+    }
+
+    .option-btn.selected .opt-text {
+      color: var(--amber);
+      font-weight: 500;
+    }
+
+    .opt-score-hint {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      color: #bbb;
+      position: relative;
+      z-index: 1;
+      flex-shrink: 0;
+      margin-top: 2px;
+      align-self: center;
+    }
+
+    .option-btn.selected .opt-score-hint {
+      color: var(--gold);
+    }
+
+    .q-nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: auto;
+    }
+
+    .btn-back {
+      font-family: var(--font-ui);
+      font-size: 13px;
+      color: #aaa;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 8px 0;
+      display: flex;
+      align-items: center;
+      gap: .375rem;
+      transition: color .2s;
+    }
+
+    .btn-back:hover {
+      color: var(--ink);
+    }
+
+    .btn-back:disabled {
+      opacity: .3;
+      cursor: not-allowed;
+    }
+
+    .btn-next {
+      display: inline-flex;
+      align-items: center;
+      gap: .625rem;
+      background: var(--ink);
+      color: var(--paper);
+      font-family: var(--font-ui);
+      font-size: 13px;
+      font-weight: 600;
+      padding: 11px 24px;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+      transition: background .2s, opacity .2s;
+      opacity: .35;
+      pointer-events: none;
+    }
+
+    .btn-next.enabled {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .btn-next.enabled:hover {
+      background: var(--gold);
+      color: var(--ink);
+    }
+
+    /* ─── CAPTURE SCREEN ─── */
+    .capture-screen {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      width: 100%;
+      max-width: 760px;
+    }
+
+    .capture-icon {
+      width: 64px;
+      height: 64px;
+      border-radius: 16px;
+      background: var(--gold-pale);
+      border: 1px solid rgba(184, 134, 45, .3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+      margin: 0 auto 1.5rem;
+    }
+
+    .capture-headline {
+      font-family: var(--font-display);
+      font-size: 32px;
+      color: var(--ink);
+      line-height: 1.2;
+      margin-bottom: .625rem;
+    }
+
+    .capture-headline em {
+      font-style: italic;
+      color: var(--gold);
+    }
+
+    .capture-sub {
+      font-size: 14px;
+      color: #666;
+      max-width: 440px;
+      line-height: 1.7;
+      margin-bottom: 2rem;
+    }
+
+    .capture-form {
+      width: 100%;
+      max-width: 440px;
+      display: flex;
+      flex-direction: column;
+      gap: .875rem;
+      text-align: left;
+    }
+
+    .field-group {
+      display: flex;
+      flex-direction: column;
+      gap: .375rem;
+    }
+
+    .field-label {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: #888;
+    }
+
+    .field-input {
+      font-family: var(--font-ui);
+      font-size: 14px;
+      color: var(--ink);
+      background: var(--white);
+      border: 1.5px solid var(--paper-mid);
+      border-radius: 8px;
+      padding: 10px 14px;
+      width: 100%;
+      transition: border-color .2s;
+      outline: none;
+    }
+
+    .field-input:focus {
+      border-color: var(--gold-line);
+    }
+
+    .field-input::placeholder {
+      color: #bbb;
+    }
+
+    .field-select {
+      font-family: var(--font-ui);
+      font-size: 14px;
+      color: var(--ink);
+      background: var(--white);
+      border: 1.5px solid var(--paper-mid);
+      border-radius: 8px;
+      padding: 10px 14px;
+      width: 100%;
+      cursor: pointer;
+      transition: border-color .2s;
+      outline: none;
+      -webkit-appearance: none;
+    }
+
+    .field-select:focus {
+      border-color: var(--gold-line);
+    }
+
+    .btn-submit {
+      width: 100%;
+      padding: 14px;
+      background: var(--ink);
+      color: var(--paper);
+      font-family: var(--font-ui);
+      font-size: 14px;
+      font-weight: 600;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      margin-top: .5rem;
+      transition: background .2s;
+      letter-spacing: .02em;
+    }
+
+    .btn-submit:hover {
+      background: var(--gold);
+      color: var(--ink);
+    }
+
+    .capture-privacy {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      color: #bbb;
+      text-align: center;
+      margin-top: .5rem;
+      letter-spacing: .03em;
+    }
+
+    /* ─── REPORT SCREEN ─── */
+    .report-screen {
+      display: none;
+      flex-direction: column;
+      width: 100%;
+      max-width: 960px;
+    }
+
+    .report-topbar {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+      gap: 1rem;
+      padding-bottom: 1.1rem;
+      border-bottom: 1px solid rgba(12, 19, 50, .08);
+    }
+
+    .report-name-block {}
+
+    .report-recipient {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: .25rem;
+    }
+
+    .report-title {
+      font-family: var(--font-display);
+      font-size: 26px;
+      color: var(--ink);
+      line-height: 1.2;
+    }
+
+    .report-title em {
+      font-style: italic;
+      color: var(--gold);
+    }
+
+    .report-meta-right {
+      text-align: right;
+      font-family: var(--font-mono);
+      font-size: 10px;
+      color: #aaa;
+      letter-spacing: .04em;
+      line-height: 1.8;
+    }
+
+    .score-hero {
+      border-radius: 22px;
+      padding: 2rem 2.1rem;
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+      box-shadow: 0 18px 44px rgba(12, 19, 50, .08);
+    }
+
+    .score-hero.critical {
+      background: linear-gradient(135deg, #fff5f5 0%, #fdf0f0 100%);
+      border: 1.5px solid #e8b8b8;
+    }
+
+    .score-hero.moderate {
+      background: linear-gradient(135deg, #fffaf0 0%, #fdf8ee 100%);
+      border: 1.5px solid #e8d299;
+    }
+
+    .score-hero.ready {
+      background: linear-gradient(135deg, #f4fbf6 0%, #edf6f0 100%);
+      border: 1.5px solid #9fcfb0;
+    }
+
+    .score-big {
+      font-family: var(--font-display);
+      font-size: 86px;
+      font-weight: 600;
+      line-height: 1;
+      flex-shrink: 0;
+    }
+
+    .score-hero.critical .score-big {
+      color: var(--red);
+    }
+
+    .score-hero.moderate .score-big {
+      color: var(--amber);
+    }
+
+    .score-hero.ready .score-big {
+      color: var(--green);
+    }
+
+    .score-denom {
+      font-size: 22px;
+      opacity: .4;
+    }
+
+    .score-right {}
+
+    .score-tier-label {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      margin-bottom: .375rem;
+    }
+
+    .score-hero.critical .score-tier-label {
+      color: var(--red);
+    }
+
+    .score-hero.moderate .score-tier-label {
+      color: var(--amber);
+    }
+
+    .score-hero.ready .score-tier-label {
+      color: var(--green);
+    }
+
+    .score-tier-name {
+      font-family: var(--font-display);
+      font-size: 22px;
+      color: var(--ink);
+      line-height: 1.2;
+      margin-bottom: .5rem;
+    }
+
+    .score-tier-desc {
+      font-size: 14px;
+      color: #555;
+      line-height: 1.75;
+      max-width: 500px;
+    }
+
+    .report-summary-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: .85rem;
+      margin-bottom: 1.4rem;
+    }
+
+    .summary-card {
+      background: rgba(255, 255, 255, .9);
+      border: 1px solid rgba(12, 19, 50, .08);
+      border-radius: 16px;
+      padding: 1rem 1.05rem;
+      box-shadow: 0 12px 32px rgba(12, 19, 50, .05);
+    }
+
+    .summary-kicker {
+      font-family: var(--font-mono);
+      font-size: 9px;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: #999;
+      margin-bottom: .45rem;
+    }
+
+    .summary-title {
+      font-family: var(--font-display);
+      font-size: 24px;
+      color: var(--ink);
+      line-height: 1.05;
+      margin-bottom: .4rem;
+    }
+
+    .summary-copy {
+      font-size: 12px;
+      color: #666;
+      line-height: 1.65;
+    }
+
+    .metrics-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: .75rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .metric-tile {
+      background: var(--white);
+      border: 1px solid rgba(12, 19, 50, .08);
+      border-radius: 14px;
+      padding: 1rem 1rem;
+      box-shadow: 0 12px 28px rgba(12, 19, 50, .04);
+    }
+
+    .metric-tile-label {
+      font-family: var(--font-mono);
+      font-size: 9px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: #aaa;
+      margin-bottom: .375rem;
+    }
+
+    .metric-tile-val {
+      font-family: var(--font-display);
+      font-size: 22px;
+      color: var(--ink);
+      line-height: 1;
+      margin-bottom: .25rem;
+    }
+
+    .metric-tile-sub {
+      font-size: 11px;
+      color: #888;
+      line-height: 1.4;
+    }
+
+    .metric-tile.featured {
+      background: linear-gradient(145deg, rgba(12, 19, 50, .98) 0%, rgba(22, 32, 79, .98) 100%);
+      border-color: rgba(245, 241, 232, .06);
+    }
+
+    .metric-tile.featured .metric-tile-label {
+      color: rgba(245, 241, 232, .52);
+    }
+
+    .metric-tile.featured .metric-tile-val {
+      color: var(--paper);
+    }
+
+    .metric-tile.featured .metric-tile-sub {
+      color: rgba(245, 241, 232, .68);
+    }
+
+    .metric-tile.warn .metric-tile-val {
+      color: var(--red);
+    }
+
+    .metric-tile.caution .metric-tile-val {
+      color: var(--amber);
+    }
+
+    .metric-tile.good .metric-tile-val {
+      color: var(--green);
+    }
+
+    .report-sections {
+      display: flex;
+      flex-direction: column;
+      gap: .875rem;
+    }
+
+    .report-section {
+      background: var(--white);
+      border: 1px solid rgba(12, 19, 50, .08);
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 14px 38px rgba(12, 19, 50, .05);
+    }
+
+    .rs-header {
+      display: flex;
+      align-items: center;
+      gap: .875rem;
+      padding: 1rem 1.25rem;
+      border-bottom: 1px solid var(--paper-warm);
+    }
+
+    .rs-num {
+      width: 28px;
+      height: 28px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 400;
+      flex-shrink: 0;
+    }
+
+    .rs-header.efficiency .rs-num {
+      background: var(--blue-pale);
+      color: var(--blue);
+    }
+
+    .rs-header.burnout .rs-num {
+      background: var(--red-pale);
+      color: var(--red);
+    }
+
+    .rs-header.leakage .rs-num {
+      background: var(--amber-pale);
+      color: var(--amber);
+    }
+
+    .rs-header.exit .rs-num {
+      background: var(--green-pale);
+      color: var(--green);
+    }
+
+    .rs-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--ink);
+      flex: 1;
+      letter-spacing: .01em;
+    }
+
+    .rs-pill {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      padding: 3px 10px;
+      border-radius: 20px;
+      letter-spacing: .05em;
+      font-weight: 400;
+    }
+
+    .rs-header.efficiency .rs-pill {
+      background: var(--blue-pale);
+      color: var(--blue);
+    }
+
+    .rs-header.burnout .rs-pill {
+      background: var(--red-pale);
+      color: var(--red);
+    }
+
+    .rs-header.leakage .rs-pill {
+      background: var(--amber-pale);
+      color: var(--amber);
+    }
+
+    .rs-header.exit .rs-pill {
+      background: var(--green-pale);
+      color: var(--green);
+    }
+
+    .rs-body {
+      padding: 1.125rem 1.25rem;
+    }
+
+    .rs-lead {
+      font-size: 14px;
+      color: #444;
+      line-height: 1.8;
+      margin-bottom: 1rem;
+    }
+
+    .finding-list {
+      display: flex;
+      flex-direction: column;
+      gap: .5rem;
+    }
+
+    .finding {
+      display: flex;
+      align-items: flex-start;
+      gap: .75rem;
+      font-size: 13px;
+      line-height: 1.6;
+      color: #444;
+      padding: .75rem .85rem;
+      border-radius: 12px;
+      border: 1px solid rgba(12, 19, 50, .06);
+      background: #fcfbf8;
+    }
+
+    .finding-marker {
+      width: 18px;
+      height: 18px;
+      border-radius: 5px;
+      flex-shrink: 0;
+      margin-top: 1px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 9px;
+      font-family: var(--font-mono);
+    }
+
+    .finding.urgent {
+      background: #fff7f7;
+      border-color: rgba(124, 35, 48, .08);
+    }
+
+    .finding.caution {
+      background: #fffaf1;
+      border-color: rgba(114, 81, 42, .08);
+    }
+
+    .finding.good {
+      background: #f6fbf7;
+      border-color: rgba(36, 69, 55, .08);
+    }
+
+    .finding.info {
+      background: #f5f7fd;
+      border-color: rgba(36, 53, 116, .08);
+    }
+
+    .finding.urgent .finding-marker {
+      background: var(--red-pale);
+      color: var(--red);
+    }
+
+    .finding.caution .finding-marker {
+      background: var(--amber-pale);
+      color: var(--amber);
+    }
+
+    .finding.good .finding-marker {
+      background: var(--green-pale);
+      color: var(--green);
+    }
+
+    .finding.info .finding-marker {
+      background: var(--blue-pale);
+      color: var(--blue);
+    }
+
+    .finding-text b {
+      font-weight: 600;
+      color: var(--ink-soft);
+    }
+
+    .valuation-compare {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: .75rem;
+      margin-top: .875rem;
+    }
+
+    .val-box {
+      border-radius: 14px;
+      padding: 1rem 1rem;
+      text-align: center;
+    }
+
+    .val-box.current {
+      background: var(--paper-warm);
+      border: 1px solid var(--paper-mid);
+    }
+
+    .val-box.optimized {
+      background: var(--green-pale);
+      border: 1px solid #9fcfb0;
+    }
+
+    .val-label {
+      font-family: var(--font-mono);
+      font-size: 9px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      margin-bottom: .375rem;
+    }
+
+    .val-box.current .val-label {
+      color: #888;
+    }
+
+    .val-box.optimized .val-label {
+      color: var(--green);
+    }
+
+    .val-amount {
+      font-family: var(--font-display);
+      font-size: 26px;
+      color: var(--ink);
+      line-height: 1;
+      margin-bottom: .25rem;
+    }
+
+    .val-box.optimized .val-amount {
+      color: var(--green);
+    }
+
+    .val-sub {
+      font-size: 11px;
+      color: #888;
+      line-height: 1.4;
+    }
+
+    .val-box.optimized .val-sub {
+      color: #4a7a5e;
+    }
+
+    .uplift-banner {
+      text-align: center;
+      background: var(--gold-pale);
+      border: 1px solid rgba(184, 134, 45, .25);
+      border-radius: 14px;
+      padding: 1rem;
+      margin-top: .85rem;
+    }
+
+    .uplift-amount {
+      font-family: var(--font-display);
+      font-size: 28px;
+      color: var(--amber);
+      line-height: 1;
+    }
+
+    .uplift-label {
+      font-size: 12px;
+      color: var(--amber);
+      margin-top: .25rem;
+    }
+
+    .cta-section {
+      background: var(--ink);
+      border-radius: 24px;
+      padding: 2.2rem 2rem;
+      text-align: center;
+      margin-top: 1.5rem;
+      box-shadow: 0 24px 60px rgba(12, 19, 50, .18);
+    }
+
+    .cta-eyebrow {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--gold-bright);
+      margin-bottom: .875rem;
+      display: block;
+    }
+
+    .cta-headline {
+      font-family: var(--font-display);
+      font-size: 26px;
+      color: var(--paper);
+      line-height: 1.2;
+      margin-bottom: .625rem;
+    }
+
+    .cta-headline em {
+      font-style: italic;
+      color: var(--gold-bright);
+    }
+
+    .cta-body {
+      font-size: 14px;
+      color: rgba(247, 245, 240, .6);
+      line-height: 1.7;
+      max-width: 540px;
+      margin: 0 auto 1.5rem;
+    }
+
+    .cta-proof-row {
+      display: flex;
+      justify-content: center;
+      gap: .7rem;
+      flex-wrap: wrap;
+      margin-bottom: 1.2rem;
+    }
+
+    .cta-proof-pill {
+      padding: .45rem .75rem;
+      border-radius: 999px;
+      background: rgba(247, 245, 240, .08);
+      border: 1px solid rgba(247, 245, 240, .1);
+      color: rgba(247, 245, 240, .72);
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    .cta-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: .75rem;
+      background: var(--gold-bright);
+      color: var(--ink);
+      font-family: var(--font-ui);
+      font-size: 14px;
+      font-weight: 700;
+      padding: 14px 28px;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+      transition: background .2s;
+      letter-spacing: .02em;
+    }
+
+    .cta-btn:hover {
+      background: var(--gold-bright);
+      filter: brightness(1.1);
+    }
+
+    .cta-btn.secondary {
+      background: transparent;
+      color: var(--paper);
+      border: 1px solid rgba(247, 245, 240, .22);
+    }
+
+    .cta-btn.secondary:hover {
+      background: rgba(247, 245, 240, .08);
+      filter: none;
+    }
+
+    .cta-actions {
+      display: flex;
+      justify-content: center;
+      gap: .75rem;
+      flex-wrap: wrap;
+    }
+
+    .cta-urgency {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      color: rgba(247, 245, 240, .4);
+      margin-top: .875rem;
+      letter-spacing: .04em;
+    }
+
+    .report-footer {
+      text-align: center;
+      padding: 1.25rem 0;
+      font-family: var(--font-mono);
+      font-size: 10px;
+      color: #bbb;
+      letter-spacing: .04em;
+      border-top: 1px solid var(--paper-mid);
+      margin-top: 1.5rem;
+    }
+
+    /* ─── BOTTOM BAR ─── */
+    .bottombar {
+      background: var(--ink);
+      padding: .75rem 2rem;
+      text-align: center;
+      font-family: var(--font-mono);
+      font-size: 10px;
+      color: rgba(247, 245, 240, .25);
+      letter-spacing: .05em;
+    }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 800px) {
+      .main {
+        flex-direction: column;
+      }
+
+      .left-rail {
+        width: 100%;
+        padding: 1.75rem 1.5rem;
+      }
+
+      .right-content {
+        padding: 2rem 1.5rem;
+      }
+
+      .intro-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .report-summary-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .metrics-row {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .valuation-compare {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .report-preview {
+        grid-template-columns: 1fr;
+      }
+
+      .preview-footer {
+        grid-template-columns: 1fr;
+      }
+
+      .intro-actions {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .intro-actions .btn-start,
+      .intro-actions .btn-book-call {
+        width: 100%;
+        justify-content: center;
+      }
+
+      .topbar-right {
+        display: none;
+      }
+    }
+
+    @media (max-width: 500px) {
+      .topbar {
+        padding: .55rem 1rem;
+      }
+
+      .brand-logo {
+        height: 48px;
+      }
+
+      .right-content {
+        padding: 1.4rem 1rem 2rem;
+      }
+
+      .intro-headline {
+        font-size: clamp(40px, 13vw, 58px);
+      }
+
+      .intro-body {
+        font-size: 16px;
+      }
+
+      .intro-proof-panel {
+        padding: 1.1rem;
+        border-radius: 22px;
+      }
+
+      .preview-score-row {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .preview-score-value {
+        font-size: 58px;
+      }
+
+      .metrics-row {
+        grid-template-columns: 1fr;
+      }
+
+      .valuation-compare {
+        grid-template-columns: 1fr;
+      }
+
+      .score-hero {
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      .score-big {
+        font-size: 56px;
+      }
+
+      .cta-actions {
+        flex-direction: column;
+      }
+
+      .cta-actions .cta-btn {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+
+    /* ─── FADE IN ANIMATION ─── */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(16px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .anim {
+      animation: fadeInUp .5s ease forwards;
+    }
+
+    .anim-d1 {
+      animation-delay: .08s;
+      opacity: 0;
+    }
+
+    .anim-d2 {
+      animation-delay: .16s;
+      opacity: 0;
+    }
+
+    .anim-d3 {
+      animation-delay: .24s;
+      opacity: 0;
+    }
+
+    .anim-d4 {
+      animation-delay: .32s;
+      opacity: 0;
+    }
+
+    .anim-d5 {
+      animation-delay: .40s;
+      opacity: 0;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="shell">
+
+    <!-- TOP BAR -->
+    <header class="topbar">
+      <a href="index.html" class="brand" aria-label="Your Lifestyle Navigator home">
+        <img src="logo.png" alt="Your Lifestyle Navigator logo" class="brand-logo">
+      </a>
+      <span class="topbar-right">HEALTHCARE AI READINESS SCORE™ · v2.0</span>
+    </header>
+
+    <div class="main">
+
+      <!-- LEFT RAIL -->
+      <aside class="left-rail">
+        <span class="rail-eyebrow">Free assessment</span>
+        <h2 class="rail-title">Healthcare<br><em>AI Readiness</em><br>Score™</h2>
+        <p class="rail-sub">Discover in 3 minutes exactly where your practice is leaking money — and what to automate
+          first.</p>
+        <div class="rail-meta">
+          <div class="meta-item">
+            <div class="meta-icon">7</div>
+            Seven diagnostic questions
+          </div>
+          <div class="meta-item">
+            <div class="meta-icon">3'</div>
+            Under 3 minutes
+          </div>
+          <div class="meta-item">
+            <div class="meta-icon">4</div>
+            Four-section report
+          </div>
+          <div class="meta-item">
+            <div class="meta-icon">$</div>
+            Live revenue leakage estimate
+          </div>
+        </div>
+        <div class="progress-section">
+          <div class="progress-label-row">
+            <span id="rail-progress-label">NOT STARTED</span>
+            <span id="rail-progress-pct">0%</span>
+          </div>
+          <div class="progress-track">
+            <div class="progress-fill" id="progress-fill"></div>
+          </div>
+          <div class="step-dots" id="step-dots"></div>
+        </div>
+      </aside>
+
+      <!-- RIGHT CONTENT -->
+      <main class="right-content">
+
+        <!-- INTRO -->
+        <div class="intro-screen" id="intro-screen">
+          <div class="intro-layout">
+            <div class="intro-copy">
+              <div class="intro-badge anim anim-d1">
+                <div class="intro-badge-dot"></div>Live scoring engine · Instant report
+              </div>
+              <h1 class="intro-headline anim anim-d2">Find out exactly<br>what AI can do<br><em>for your practice.</em>
+              </h1>
+              <p class="intro-body anim anim-d3">Answer 7 honest questions about your operations. We'll calculate your
+                operational efficiency, burnout risk, monthly revenue leakage, and exit valuation impact — and show you
+                a personalized report in under 3 minutes.</p>
+              <div class="intro-trust-row anim anim-d4">
+                <div class="trust-pill">
+                  <div class="trust-pill-dot"></div>7 Questions
+                </div>
+                <div class="trust-pill">
+                  <div class="trust-pill-dot"></div>3 Minutes
+                </div>
+                <div class="trust-pill">
+                  <div class="trust-pill-dot"></div>Instant Score
+                </div>
+                <div class="trust-pill">
+                  <div class="trust-pill-dot"></div>Founder-Focused
+                </div>
+              </div>
+              <div class="anim anim-d5">
+                <div class="intro-actions">
+                  <button class="btn-start" onclick="startQuiz()">
+                    Begin assessment
+                    <div class="btn-start-arrow">→</div>
+                  </button>
+                  <a href="https://api.growthhub365.com/widget/booking/ELU2FEOcVU21WWdx3jdZ" class="btn-book-call"
+                    target="_blank" rel="noopener noreferrer">Book a call</a>
+                </div>
+                <p class="intro-microcopy">No credit card · No spam · Report delivered instantly</p>
+                <a href="index.html" class="intro-return-link">← Back to landing page</a>
+              </div>
+            </div>
+
+            <div class="intro-proof-panel anim anim-d4">
+              <div class="preview-header">
+                <div class="preview-kicker">What your report reveals</div>
+                <div class="preview-status">Ready in 3 min</div>
+              </div>
+
+              <!-- <div class="preview-score-card">
+            <div class="preview-score-label">Sample executive readout</div>
+            <div class="preview-score-row">
+              <div class="preview-score-value">74<span>/100</span></div>
+              <div class="preview-score-copy">A fast snapshot of operational readiness, burnout risk, revenue leakage, and exit positioning.</div>
+            </div>
+          </div> -->
+
+              <div class="report-preview">
+                <div class="preview-item">
+                  <div class="preview-dot" style="background:#243574;"></div>
+                  <div>
+                    <div class="preview-text">Operational Efficiency Score</div>
+                    <div class="preview-sub">See how automated your workflows really are and where the drag lives.</div>
+                  </div>
+                </div>
+                <div class="preview-item">
+                  <div class="preview-dot" style="background:#7c2330;"></div>
+                  <div>
+                    <div class="preview-text">Burnout Risk Level</div>
+                    <div class="preview-sub">Spot whether admin overload is quietly breaking your team.</div>
+                  </div>
+                </div>
+                <div class="preview-item">
+                  <div class="preview-dot" style="background:#72512a;"></div>
+                  <div>
+                    <div class="preview-text">Monthly Revenue Leakage</div>
+                    <div class="preview-sub">Quantify the dollars slipping out through manual work and rework.</div>
+                  </div>
+                </div>
+                <div class="preview-item">
+                  <div class="preview-dot" style="background:#244537;"></div>
+                  <div>
+                    <div class="preview-text">Exit Valuation Impact</div>
+                    <div class="preview-sub">Understand what smarter systems could add to enterprise value.</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="preview-footer">
+                <div class="preview-footer-card">
+                  <div class="preview-footer-label">Ideal Fit</div>
+                  <div class="preview-footer-copy">Healthcare founders who want to reduce admin drag, reclaim margin,
+                    and become less operationally trapped.</div>
+                </div>
+                <div class="preview-footer-card">
+                  <div class="preview-footer-label">What You Leave With</div>
+                  <div class="preview-footer-copy">A clearer picture of what to automate first, what is costing you
+                    money, and whether it is time for a strategy call.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- QUESTION -->
+        <div class="question-screen" id="question-screen">
+          <div class="q-header">
+            <div class="q-counter" id="q-counter">QUESTION 1 OF 7</div>
+            <div class="q-text" id="q-text"></div>
+            <div class="q-why" id="q-why"></div>
+          </div>
+          <div class="options-list" id="options-list"></div>
+          <div class="q-nav">
+            <button class="btn-back" id="btn-back" onclick="prevQ()" disabled>← Back</button>
+            <button class="btn-next" id="btn-next" onclick="nextQ()">
+              <span id="btn-next-label">Continue</span> →
+            </button>
+          </div>
+        </div>
+
+        <!-- CAPTURE -->
+        <div class="capture-screen" id="capture-screen">
+          <div class="capture-icon">📊</div>
+          <h2 class="capture-headline">Your report<br><em>is ready.</em></h2>
+          <p class="capture-sub">Enter your details below and we'll generate your personalized Healthcare AI Readiness
+            Score™ report — including your estimated monthly revenue leakage and exit valuation impact.</p>
+          <form class="capture-form" onsubmit="showReport(event)">
+            <div class="field-group">
+              <label class="field-label">First name *</label>
+              <input type="text" class="field-input" id="f-name" placeholder="John" required>
+            </div>
+            <div class="field-group">
+              <label class="field-label">Practice or company name *</label>
+              <input type="text" class="field-input" id="f-practice" placeholder="Sunrise Behavioral Health" required>
+            </div>
+            <div class="field-group">
+              <label class="field-label">Annual revenue (approximate) *</label>
+              <select class="field-select" id="f-rev" required>
+                <option value="">Select your revenue range</option>
+                <option value="750000">Under $1M</option>
+                <option value="2500000">$1M – $5M</option>
+                <option value="7500000">$5M – $10M</option>
+                <option value="12500000">$10M – $15M</option>
+                <option value="17500000">$15M – $20M</option>
+                <option value="25000000">$20M+</option>
+              </select>
+            </div>
+            <div class="field-group">
+              <label class="field-label">Work email *</label>
+              <input type="email" class="field-input" id="f-email" placeholder="john@yourpractice.com" required>
+            </div>
+            <div class="field-group">
+              <label class="field-label">Mobile number (optional)</label>
+              <input type="tel" class="field-input" id="f-phone" placeholder="+1 (555) 000-0000">
+            </div>
+            <button type="submit" class="btn-submit">Generate my AI Readiness Score →</button>
+            <p class="capture-privacy">Your information is used solely to deliver and discuss your report. No spam.
+              Ever.</p>
+          </form>
+        </div>
+
+        <!-- REPORT -->
+        <div class="report-screen" id="report-screen"></div>
+
+      </main>
+    </div>
+
+    <footer class="bottombar">
+      Healthcare AI Readiness Score™ · Your Lifestyle Navigator™ · The Healthcare AI Evangelist · John S. Smith Jr., RN,
+      BSN, CEPA · yourlifestylenavigator.com
+    </footer>
+  </div>
+
+  <script>
+    const BOOKING_URL = 'https://api.growthhub365.com/widget/booking/ELU2FEOcVU21WWdx3jdZ';
+
+    // ═══════════════════════════════════════════════════
+    // QUESTION DATA — 7 Questions with full scoring
+    // ═══════════════════════════════════════════════════
+    const QUESTIONS = [
+      {
+        id: 1,
+        category: "operations",
+        text: "How many hours per week does your team spend on manual administrative tasks — insurance verification, prior authorizations, data entry, and claims scrubbing?",
+        why: "Administrative burden is the #1 driver of staff burnout and the leading cause of margin erosion in behavioral health practices. This single metric predicts your clean claim rate, staff turnover risk, and scalability ceiling.",
+        options: [
+          { label: "0–5 hours — we have strong automation already", score: 4, hint: "Low burden" },
+          { label: "6–15 hours — some manual work but manageable", score: 3, hint: "Moderate" },
+          { label: "16–30 hours — it's a significant drain on the team", score: 2, hint: "High burden" },
+          { label: "30+ hours — it consumes most of our admin capacity", score: 1, hint: "Critical" }
+        ]
+      },
+      {
+        id: 2,
+        category: "billing",
+        text: "What percentage of your submitted claims are denied on first submission?",
+        why: "Denial rates are a direct measure of billing system health. Every denied claim costs 3–5x more to rework than to submit correctly the first time. At scale, even a 10% denial rate compounds into five- and six-figure annual losses.",
+        options: [
+          { label: "Under 5% — our clean claim rate is strong", score: 4, hint: "Best-in-class" },
+          { label: "5–10% — around industry average", score: 3, hint: "Average" },
+          { label: "11–20% — we spend significant time on rework", score: 2, hint: "Above average" },
+          { label: "Over 20% — denials are a serious operational problem", score: 1, hint: "Critical" }
+        ]
+      },
+      {
+        id: 3,
+        category: "burnout",
+        text: "How many clinical or administrative staff members have voluntarily left your practice in the last 12 months?",
+        why: "Staff turnover is the most expensive symptom of operational burnout. Replacing a single employee costs 50–200% of their annual salary in recruiting, onboarding, and lost productivity. High turnover also signals a systems problem, not a people problem.",
+        options: [
+          { label: "None — our team is stable and retention is excellent", score: 4, hint: "Strong" },
+          { label: "1–2 people — normal attrition for our size", score: 3, hint: "Normal" },
+          { label: "3–5 people — turnover is becoming a real cost center", score: 2, hint: "Concerning" },
+          { label: "6 or more — we are in an active retention crisis", score: 1, hint: "Critical" }
+        ]
+      },
+      {
+        id: 4,
+        category: "founder",
+        text: "How many hours per week do you personally spend on operations — scheduling, billing oversight, HR issues, compliance, or day-to-day administrative problem-solving?",
+        why: "Founder dependency is the single largest valuation discount applied by buyers and private equity. A business that cannot function without its founder is not a scalable asset — it is a demanding job. This number determines your exit multiple more than any other single factor.",
+        options: [
+          { label: "0–5 hours — I operate as a true CEO, not an operator", score: 4, hint: "CEO mode" },
+          { label: "6–15 hours — some involvement, mostly strategic", score: 3, hint: "Transitioning" },
+          { label: "16–30 hours — I am still deeply in daily operations", score: 2, hint: "Operator mode" },
+          { label: "30+ hours — I am the bottleneck in my own business", score: 1, hint: "Bottleneck" }
+        ]
+      },
+      {
+        id: 5,
+        category: "technology",
+        text: "How would you honestly describe your current use of AI and automation tools in your practice?",
+        why: "Your AI adoption stage determines how quickly ROI can be realized and how much margin improvement is immediately available. Practices with zero automation have the most to gain — and the most urgency to act before competitors in their market automate first.",
+        options: [
+          { label: "Advanced — AI is embedded across intake, billing, scheduling, and documentation", score: 4, hint: "Advanced" },
+          { label: "Moderate — we use several tools but they are not integrated", score: 3, hint: "Developing" },
+          { label: "Early-stage — one or two tools, not systematically deployed", score: 2, hint: "Early" },
+          { label: "None — our operations are entirely manual", score: 1, hint: "Pre-automation" }
+        ]
+      },
+      {
+        id: 6,
+        category: "exit",
+        text: "Do you have a formal, documented exit strategy or a professional practice valuation completed within the last 24 months?",
+        why: "Practices without documented exit strategies are consistently valued at 20–40% below market-ready peers at the point of sale. Exit planning is not about when you sell — it is about the decisions you make today that determine what your business is worth when you do.",
+        options: [
+          { label: "Yes — formal plan with an advisor and a current valuation", score: 4, hint: "Prepared" },
+          { label: "Partial — some planning has been done, no formal valuation", score: 3, hint: "Starting" },
+          { label: "Informal — I have thought about it but nothing is documented", score: 2, hint: "Unprepared" },
+          { label: "No — exit planning has not been a priority yet", score: 1, hint: "No plan" }
+        ]
+      },
+      {
+        id: 7,
+        category: "growth",
+        text: "What is your primary business goal for the next 24 months?",
+        why: "Your growth horizon determines which NEXT Framework™ interventions will deliver the highest immediate ROI. Different goals require radically different AI implementation priorities — and knowing yours allows us to personalize your action plan precisely.",
+        options: [
+          { label: "Scale revenue and open new service lines or locations", score: 3, hint: "Growth" },
+          { label: "Reduce operational burden and meaningfully improve margins", score: 2, hint: "Efficiency" },
+          { label: "Prepare for acquisition, private equity, or a platform exit", score: 4, hint: "Exit-ready" },
+          { label: "Stabilize and systematize current operations before scaling", score: 1, hint: "Foundation" }
+        ]
+      }
+    ];
+
+    // ═══════════════════════════════════════════════════
+    // STATE
+    // ═══════════════════════════════════════════════════
+    let current = 0;
+    let answers = new Array(QUESTIONS.length).fill(null);
+    let userData = {};
+
+    // ═══════════════════════════════════════════════════
+    // INIT DOTS
+    // ═══════════════════════════════════════════════════
+    function initDots() {
+      const container = document.getElementById('step-dots');
+      container.innerHTML = '';
+      QUESTIONS.forEach((_, i) => {
+        const d = document.createElement('div');
+        d.className = 'step-dot';
+        d.id = 'dot-' + i;
+        container.appendChild(d);
+      });
+    }
+
+    function updateProgress() {
+      const answered = answers.filter(a => a !== null).length;
+      const pct = Math.round((answered / QUESTIONS.length) * 100);
+      document.getElementById('progress-fill').style.width = pct + '%';
+      document.getElementById('rail-progress-pct').textContent = pct + '%';
+
+      if (answered === 0) {
+        document.getElementById('rail-progress-label').textContent = 'IN PROGRESS';
+      } else if (answered === QUESTIONS.length) {
+        document.getElementById('rail-progress-label').textContent = 'COMPLETE';
+      } else {
+        document.getElementById('rail-progress-label').textContent = answered + ' OF 7 ANSWERED';
+      }
+
+      QUESTIONS.forEach((_, i) => {
+        const dot = document.getElementById('dot-' + i);
+        if (!dot) return;
+        dot.className = 'step-dot';
+        if (i < current) dot.classList.add('done');
+        else if (i === current) dot.classList.add('active');
+      });
+    }
+
+    // ═══════════════════════════════════════════════════
+    // QUIZ FLOW
+    // ═══════════════════════════════════════════════════
+    function startQuiz() {
+      document.getElementById('intro-screen').style.display = 'none';
+      document.getElementById('question-screen').style.display = 'flex';
+      current = 0;
+      renderQuestion();
+    }
+
+    function renderQuestion() {
+      const q = QUESTIONS[current];
+      document.getElementById('q-counter').textContent = 'QUESTION ' + (current + 1) + ' OF ' + QUESTIONS.length;
+      document.getElementById('q-text').textContent = q.text;
+      document.getElementById('q-why').textContent = q.why;
+
+      const list = document.getElementById('options-list');
+      list.innerHTML = '';
+      q.options.forEach((opt, i) => {
+        const btn = document.createElement('button');
+        btn.className = 'option-btn' + (answers[current] === i ? ' selected' : '');
+        btn.innerHTML = `
+      <div class="opt-indicator"><div class="opt-check"></div></div>
+      <div class="opt-text">${opt.label}</div>
+      <div class="opt-score-hint">${opt.hint}</div>
+    `;
+        btn.addEventListener('click', () => selectOption(i));
+        list.appendChild(btn);
+      });
+
+      const backBtn = document.getElementById('btn-back');
+      backBtn.disabled = current === 0;
+
+      const nextBtn = document.getElementById('btn-next');
+      const nextLabel = document.getElementById('btn-next-label');
+      if (current === QUESTIONS.length - 1) {
+        nextLabel.textContent = 'Get my score';
+      } else {
+        nextLabel.textContent = 'Continue';
+      }
+
+      if (answers[current] !== null) {
+        nextBtn.classList.add('enabled');
+      } else {
+        nextBtn.classList.remove('enabled');
+      }
+
+      updateProgress();
+    }
+
+    function selectOption(i) {
+      answers[current] = i;
+      document.querySelectorAll('.option-btn').forEach((btn, idx) => {
+        btn.classList.toggle('selected', idx === i);
+      });
+      document.getElementById('btn-next').classList.add('enabled');
+    }
+
+    function nextQ() {
+      if (answers[current] === null) return;
+      if (current < QUESTIONS.length - 1) {
+        current++;
+        renderQuestion();
+      } else {
+        showCapture();
+      }
+    }
+
+    function prevQ() {
+      if (current > 0) {
+        current--;
+        renderQuestion();
+      }
+    }
+
+    function showCapture() {
+      document.getElementById('question-screen').style.display = 'none';
+      document.getElementById('capture-screen').style.display = 'flex';
+      updateProgress();
+    }
+
+    // ═══════════════════════════════════════════════════
+    // SCORING ENGINE
+    // ═══════════════════════════════════════════════════
+    function calcScores() {
+      const scores = answers.map((a, i) => QUESTIONS[i].options[a].score);
+      const total = scores.reduce((s, v) => s + v, 0);
+      const maxTotal = QUESTIONS.length * 4;
+      const pct = Math.round((total / maxTotal) * 100);
+
+      // Individual scores by category
+      const [s1, s2, s3, s4, s5, s6, s7] = scores;
+
+      // Operational Efficiency: Q1 (admin hours) + Q2 (denial rate) + Q5 (AI adoption)
+      const effRaw = s1 + s2 + s5;
+      const effPct = Math.round((effRaw / 12) * 100);
+
+      // Burnout Risk: Q1 (hours) + Q3 (turnover) + Q4 (founder hours) — lower = higher risk
+      const burnRaw = s1 + s3 + s4;
+      const burnPct = Math.round((burnRaw / 12) * 100);
+
+      // Revenue leakage calculation
+      const rev = parseInt(document.getElementById('f-rev').value) || 2500000;
+      let leakRate = 0;
+      // Admin hours leakage
+      if (s1 === 1) leakRate += 0.10;
+      else if (s1 === 2) leakRate += 0.06;
+      else if (s1 === 3) leakRate += 0.025;
+      // Denial rate leakage
+      if (s2 === 1) leakRate += 0.12;
+      else if (s2 === 2) leakRate += 0.07;
+      else if (s2 === 3) leakRate += 0.03;
+      // Turnover cost
+      if (s3 === 1) leakRate += 0.06;
+      else if (s3 === 2) leakRate += 0.035;
+      else if (s3 === 3) leakRate += 0.01;
+
+      const annualLeak = Math.round(rev * leakRate);
+      const monthlyLeak = Math.round(annualLeak / 12);
+
+      // Exit valuation
+      const ebitdaRate = 0.18;
+      const ebitda = rev * ebitdaRate;
+      let currentMultiple = 4.5;
+      let aiMultiple = currentMultiple;
+
+      // Founder dependency is biggest multiple driver
+      if (s4 === 1) aiMultiple = currentMultiple * 2.0;
+      else if (s4 === 2) aiMultiple = currentMultiple * 1.65;
+      else if (s4 === 3) aiMultiple = currentMultiple * 1.3;
+      else aiMultiple = currentMultiple * 1.1;
+
+      // AI adoption adds to multiple
+      if (s5 <= 2) aiMultiple += 0.5;
+      if (s5 === 1) aiMultiple += 0.3;
+
+      // Exit planning adds to multiple
+      if (s6 <= 2) aiMultiple += 0.35;
+
+      const currentVal = Math.round(ebitda * currentMultiple);
+      const aiVal = Math.round(ebitda * aiMultiple);
+      const uplift = aiVal - currentVal;
+
+      // Score tier
+      let tier;
+      if (pct >= 72) tier = 'ready';
+      else if (pct >= 45) tier = 'moderate';
+      else tier = 'critical';
+
+      return { pct, total, maxTotal, effPct, burnPct, monthlyLeak, annualLeak, currentVal, aiVal, uplift, tier, rev, s1, s2, s3, s4, s5, s6, s7, scores };
+    }
+
+    // ═══════════════════════════════════════════════════
+    // FORMAT HELPERS
+    // ═══════════════════════════════════════════════════
+    function fmt(n) {
+      if (n >= 1000000) return '$' + (n / 1000000).toFixed(1) + 'M';
+      if (n >= 1000) return '$' + Math.round(n / 1000) + 'K';
+      return '$' + n.toLocaleString();
+    }
+    function fmtFull(n) { return '$' + Math.round(n).toLocaleString(); }
+
+    // ═══════════════════════════════════════════════════
+    // REPORT BUILDER
+    // ═══════════════════════════════════════════════════
+    function showReport(e) {
+      if (e) e.preventDefault();
+
+      const name = document.getElementById('f-name').value || 'Practice Owner';
+      const practice = document.getElementById('f-practice').value || 'Your Practice';
+      userData = { name, practice };
+
+      const s = calcScores();
+
+      const tierLabels = {
+        critical: { short: 'CRITICAL GAP', long: 'Immediate Action Required', desc: 'Your practice has significant operational vulnerabilities that are costing you money every month and suppressing your exit valuation. The good news: practices at this stage see the highest ROI from the NEXT Framework™ — typically 25–35% margin improvement within 90 days.' },
+        moderate: { short: 'PARTIALLY OPTIMIZED', long: 'Real Opportunity Present', desc: 'Your foundations are solid but meaningful gaps remain. You are leaving measurable money on the table through manual workflows, and your exit valuation has significant room to grow. The NEXT Framework™ Implementation Sprint is designed exactly for your profile.' },
+        ready: { short: 'AI-READY', long: 'Optimization & Scale Stage', desc: 'You are ahead of 80% of practices in your market. Your operational foundations are strong. The next move is converting that strength into maximum enterprise value — through advanced AI optimization and a formal exit positioning strategy.' }
+      };
+
+      const burnLabel = s.burnPct >= 70 ? 'Low Risk' : s.burnPct >= 50 ? 'Moderate' : 'High Risk';
+      const effLabel = s.effPct >= 70 ? 'Strong' : s.effPct >= 50 ? 'Developing' : 'Critical';
+
+      // ── Section 1: Operational Efficiency
+      let sec1Findings = '';
+      if (s.s5 <= 2) {
+        sec1Findings += finding('urgent', '!', '<b>AI adoption gap:</b> Your practice is running primarily on manual workflows. Practices with similar profiles typically spend 15–25 more hours per week on tasks that AI handles in seconds. This is your highest-ROI automation opportunity.');
+      } else if (s.s5 === 3) {
+        sec1Findings += finding('caution', '~', '<b>Integration gap:</b> You have tools but they are not working together. Siloed systems create duplicate data entry, gaps in the revenue cycle, and staff workarounds that erode any efficiency gain the individual tools provide.');
+      } else {
+        sec1Findings += finding('good', '✓', '<b>Strong automation baseline:</b> Your AI adoption is above average for your segment. Focus next on predictive denial management and AI-assisted coding to push clean claim rates above 97%.');
+      }
+      if (s.s2 <= 2) {
+        sec1Findings += finding('urgent', '!', '<b>Denial rate risk:</b> At your denial rate, you are spending 3–5x more to collect revenue than necessary. Predictive denial management AI — which reviews every claim against thousands of rules before submission — eliminates the majority of this cost within 60 days of deployment.');
+      } else if (s.s2 === 3) {
+        sec1Findings += finding('caution', '~', '<b>Billing optimization available:</b> Your denial rate is at industry average but AI-assisted coding typically reduces it to under 5%, which at your revenue level represents meaningful annual improvement.');
+      } else {
+        sec1Findings += finding('good', '✓', '<b>Clean claim rate is strong:</b> Your billing operations are performing well. Maintain this by implementing real-time eligibility verification to protect your clean claim rate as you scale patient volume.');
+      }
+      if (s.s1 <= 2) {
+        sec1Findings += finding('urgent', '!', '<b>Admin hours are critical:</b> The time your team is spending on manual tasks represents ' + (s.s1 === 1 ? '8–12%' : '4–7%') + ' of revenue in unbillable, replaceable labor. Automated patient intake alone typically recovers 8–12 staff hours per week.');
+      }
+
+      // ── Section 2: Burnout Risk
+      let sec2Findings = '';
+      if (s.s3 <= 2) {
+        const turnoverCost = s.s3 === 1 ? Math.round(s.rev * 0.06) : Math.round(s.rev * 0.03);
+        sec2Findings += finding('urgent', '!', '<b>Turnover is burning cash silently:</b> Based on your attrition rate, your estimated annual staff replacement cost is approximately ' + fmtFull(turnoverCost) + '. This rarely appears as a line item but shows up as declining margins every quarter.');
+      } else if (s.s3 === 3) {
+        sec2Findings += finding('caution', '~', '<b>Early warning:</b> 1–2 departures per year is normal but watch the trend. If staff cite administrative burden as a reason for leaving, that is a systems problem — not a compensation or culture problem.');
+      } else {
+        sec2Findings += finding('good', '✓', '<b>Strong retention:</b> Your team stability is a competitive advantage. Protect it by continuing to reduce administrative burden as you scale — high growth without automation is the most common retention-breaker.');
+      }
+      if (s.s4 <= 2) {
+        sec2Findings += finding('urgent', '!', '<b>Founder bottleneck creating team stress:</b> When founders are deeply embedded in daily operations, it creates a culture of dependency — staff escalate everything, decisions slow down, and burnout flows from the top down. Removing you from operations through automation is both a valuation and a culture intervention.');
+      }
+      if (s.s1 <= 2) {
+        sec2Findings += finding('caution', '~', '<b>Admin burden and burnout are directly linked:</b> Research shows that reducing administrative tasks by just 10 hours per week per staff member increases retention rates by 30–40%. This is your highest-leverage burnout intervention.');
+      }
+      if (!sec2Findings) {
+        sec2Findings += finding('good', '✓', '<b>Burnout risk is manageable:</b> Your team appears to be in reasonable shape. Continue investing in automation to protect this as you grow — every new patient added without new automation adds admin pressure to the team.');
+      }
+
+      // ── Section 3: Revenue Leakage
+      const leakBreakdown = buildLeakBreakdown(s);
+
+      // ── Section 4: Exit Valuation
+      let sec4Findings = '';
+      if (s.s4 <= 2) {
+        sec4Findings += finding('urgent', '!', '<b>Founder dependency is your biggest valuation discount:</b> Buyers apply a 30–50% valuation haircut to practices where the founder is essential to daily operations. This is a correctable problem — but it requires building systems that run without you, which is exactly what the NEXT Framework™ Transfer phase does.');
+      }
+      if (s.s6 <= 2) {
+        sec4Findings += finding('caution', '~', '<b>No exit plan means no exit premium:</b> Founders who begin formal exit planning 24–36 months before their target date consistently achieve 20–40% higher multiples than those who start 6 months out. A valuation assessment is your starting point.');
+      }
+      if (s.s5 <= 2) {
+        sec4Findings += finding('info', 'i', '<b>Technology gap suppresses your acquisition appeal:</b> Private equity buyers in the behavioral health space specifically target AI-enabled platforms. Manual operations signal integration risk, which reduces both the offer price and the pool of qualified buyers.');
+      }
+      if (s.s4 >= 3 && s.s6 >= 3) {
+        sec4Findings += finding('good', '✓', '<b>Exit foundations are solid:</b> Your low founder dependency and active exit planning put you in the top quartile for acquisition readiness. The next step is maximizing EBITDA through AI optimization to command the highest possible multiple.');
+      }
+
+      // ── CTA copy by tier
+      const ctaCopy = {
+        critical: { headline: 'Your practice needs intervention — and the ROI is immediate.', body: 'Based on your score of ' + s.pct + '/100, your practice is losing approximately ' + fmtFull(s.monthlyLeak) + ' per month and your exit valuation is discounted by an estimated ' + fmt(s.uplift) + '. A 30-minute AI Strategy Session with John Smith will produce a specific, prioritized action plan — at no cost to you.', urgency: 'PRIORITY REVIEW AVAILABLE · 2 SPOTS REMAINING FOR CRITICAL-SCORE PRACTICES THIS MONTH' },
+        moderate: { headline: 'You have strong foundations and a clear path to significantly more.', body: 'Your score of ' + s.pct + '/100 shows a practice with real operational potential. The ' + fmtFull(s.monthlyLeak) + '/month leakage and ' + fmt(s.uplift) + ' valuation gap are both fully recoverable. Let\'s build the specific implementation plan together in 30 minutes.', urgency: '3 STRATEGY SESSIONS AVAILABLE THIS MONTH · CALENDAR FILLS QUICKLY' },
+        ready: { headline: 'You are ahead of most. Let\'s turn that into a premium exit.', body: 'Your score of ' + s.pct + '/100 puts you in the top operational tier. The next move is converting that strength into maximum enterprise value. A strategy session with John will focus on exit positioning, EBITDA optimization, and whether the Consult-for-Equity model accelerates your timeline.', urgency: 'EXECUTIVE SESSION · AVAILABLE FOR QUALIFIED PRACTICES GENERATING $3M+' }
+      };
+
+      const t = tierLabels[s.tier];
+      const cta = ctaCopy[s.tier];
+      const priorityLabel = s.tier === 'critical' ? 'Intervention now' : s.tier === 'moderate' ? 'Optimization window' : 'Premium positioning';
+      const primaryDrag = s.s4 <= 2
+        ? 'Founder dependency is still shaping valuation, team flow, and speed of execution.'
+        : s.s5 <= 2
+          ? 'Manual workflows are creating the largest operational drag in the business.'
+          : s.s2 <= 2
+            ? 'Claims leakage and rework are suppressing margin more than they should.'
+            : 'Your opportunity is no longer basic automation, but fine-tuning for premium performance.';
+      const nextMove = s.tier === 'critical'
+        ? 'Stabilize the top workflow leaks first, then remove founder reliance from daily operations.'
+        : s.tier === 'moderate'
+          ? 'Tighten automation around the revenue cycle and free your team from repetitive admin burden.'
+          : 'Use AI optimization to expand EBITDA and sharpen the story a buyer sees at diligence.';
+
+      const html = `
+    <div class="report-topbar anim anim-d1">
+      <div class="report-name-block">
+        <div class="report-recipient">Report prepared for ${name} · ${practice}</div>
+        <div class="report-title">Healthcare <em>AI Readiness Score™</em></div>
+      </div>
+      <div class="report-meta-right">
+        Generated: ${new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}<br>
+        Powered by YLN · NEXT Framework™<br>
+        John S. Smith Jr., RN, BSN, CEPA
+      </div>
+    </div>
+
+    <div class="score-hero ${s.tier} anim anim-d2">
+      <div class="score-big">${s.pct}<span class="score-denom">/100</span></div>
+      <div class="score-right">
+        <div class="score-tier-label">${t.short}</div>
+        <div class="score-tier-name">${t.long}</div>
+        <div class="score-tier-desc">${t.desc}</div>
+      </div>
+    </div>
+
+    <div class="report-summary-grid anim anim-d3">
+      <div class="summary-card">
+        <div class="summary-kicker">Priority</div>
+        <div class="summary-title">${priorityLabel}</div>
+        <div class="summary-copy">${whyNowSentence(s)}</div>
+      </div>
+      <div class="summary-card">
+        <div class="summary-kicker">Main Drag</div>
+        <div class="summary-title">${s.s4 <= 2 ? 'Founder Reliance' : s.s5 <= 2 ? 'Manual Workflows' : s.s2 <= 2 ? 'Claims Leakage' : 'Optimization Upside'}</div>
+        <div class="summary-copy">${primaryDrag}</div>
+      </div>
+      <div class="summary-card">
+        <div class="summary-kicker">Best Next Move</div>
+        <div class="summary-title">${s.tier === 'critical' ? 'Fix The Leaks' : s.tier === 'moderate' ? 'Systemize The Core' : 'Optimize For Exit'}</div>
+        <div class="summary-copy">${nextMove}</div>
+      </div>
+    </div>
+
+    <div class="metrics-row anim anim-d4">
+      <div class="metric-tile featured">
+        <div class="metric-tile-label">Operational efficiency</div>
+        <div class="metric-tile-val">${s.effPct}%</div>
+        <div class="metric-tile-sub">${effLabel} — ${s.effPct >= 70 ? 'Above avg for your segment' : 'Automation gap present'}</div>
+      </div>
+      <div class="metric-tile ${s.burnPct >= 70 ? 'good' : s.burnPct >= 50 ? 'caution' : 'warn'}">
+        <div class="metric-tile-label">Burnout risk</div>
+        <div class="metric-tile-val">${burnLabel}</div>
+        <div class="metric-tile-sub">${s.burnPct >= 70 ? 'Team is stable' : s.burnPct >= 50 ? 'Early warning signs' : 'Urgent — team at risk'}</div>
+      </div>
+      <div class="metric-tile caution">
+        <div class="metric-tile-label">Monthly rev. leakage</div>
+        <div class="metric-tile-val">${fmtFull(s.monthlyLeak)}</div>
+        <div class="metric-tile-sub">${fmtFull(s.annualLeak)} lost annually to manual processes</div>
+      </div>
+      <div class="metric-tile good">
+        <div class="metric-tile-label">Exit uplift potential</div>
+        <div class="metric-tile-val">${fmt(s.uplift)}</div>
+        <div class="metric-tile-sub">Difference between current &amp; AI-optimized valuation</div>
+      </div>
+    </div>
+
+    <div class="report-sections anim anim-d5">
+
+      <div class="report-section">
+        <div class="rs-header efficiency">
+          <div class="rs-num">01</div>
+          <div class="rs-title">Operational Efficiency Score</div>
+          <div class="rs-pill">${s.effPct}% efficient</div>
+        </div>
+        <div class="rs-body">
+          <p class="rs-lead">Your operational efficiency score measures how effectively your practice has automated the administrative workflows that consume staff time and erode margins. This score combines your current AI adoption level, your claims submission accuracy, and your administrative hour burden — the three variables most predictive of profitability and scalability.</p>
+          <div class="finding-list">${sec1Findings}</div>
+        </div>
+      </div>
+
+      <div class="report-section">
+        <div class="rs-header burnout">
+          <div class="rs-num">02</div>
+          <div class="rs-title">Burnout Risk Assessment</div>
+          <div class="rs-pill">${burnLabel}</div>
+        </div>
+        <div class="rs-body">
+          <p class="rs-lead">Research from the National Council for Mental Wellbeing shows that 93% of behavioral health staff experience burnout — driven primarily by administrative overload, not patient care. Burnout risk is measured here through staff turnover rate, administrative hour burden, and founder operational dependency. High burnout risk is a trailing indicator of a systems failure, not a people failure.</p>
+          <div class="finding-list">${sec2Findings}</div>
+        </div>
+      </div>
+
+      <div class="report-section">
+        <div class="rs-header leakage">
+          <div class="rs-num">03</div>
+          <div class="rs-title">Monthly Revenue Leakage Estimate</div>
+          <div class="rs-pill">${fmtFull(s.monthlyLeak)} / month</div>
+        </div>
+        <div class="rs-body">
+          <p class="rs-lead">Based on your revenue range of ${revenueLabel(s.rev)} and your operational profile, we estimate your practice is losing approximately <strong>${fmtFull(s.monthlyLeak)} per month</strong> — or <strong>${fmtFull(s.annualLeak)} annually</strong> — through three categories of preventable inefficiency. This figure represents recoverable revenue, not theoretical savings.</p>
+          <div class="finding-list">${leakBreakdown}</div>
+          <p style="font-size:12px;color:#aaa;margin-top:.875rem;font-style:italic;">Estimates are based on YLN benchmarks across comparable behavioral health and healthcare practices. Actual recovery rates vary by implementation scope and baseline operations.</p>
+        </div>
+      </div>
+
+      <div class="report-section">
+        <div class="rs-header exit">
+          <div class="rs-num">04</div>
+          <div class="rs-title">Exit Valuation Impact</div>
+          <div class="rs-pill">${fmt(s.uplift)} potential uplift</div>
+        </div>
+        <div class="rs-body">
+          <p class="rs-lead">As a Certified Exit Planning Advisor (CEPA), John Smith evaluates healthcare practices through the lens of a private equity buyer. The decisions founders make about automation, systems, and founder independence today determine their exit multiple — not the revenue number alone. Here is what your operational profile currently means to a buyer.</p>
+          <div class="valuation-compare">
+            <div class="val-box current">
+              <div class="val-label">Current estimated valuation</div>
+              <div class="val-amount">${fmt(s.currentVal)}</div>
+              <div class="val-sub">Based on ~18% EBITDA margin at ${(4.5).toFixed(1)}x multiple — current operational profile</div>
+            </div>
+            <div class="val-box optimized">
+              <div class="val-label">AI-optimized valuation</div>
+              <div class="val-amount">${fmt(s.aiVal)}</div>
+              <div class="val-sub">After NEXT Framework™ — higher multiple driven by scalable systems, reduced founder dependency, and AI-enabled operations</div>
+            </div>
+          </div>
+          <div class="uplift-banner">
+            <div class="uplift-amount">${fmtFull(s.uplift)}</div>
+            <div class="uplift-label">Estimated wealth left on the table by remaining in manual operations</div>
+          </div>
+          <div class="finding-list" style="margin-top:.875rem;">${sec4Findings}</div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="cta-section anim anim-d5">
+      <span class="cta-eyebrow">Your next step</span>
+      <h3 class="cta-headline">${cta.headline.replace(/\./, '.<br><em>').replace(/\.$/, '.</em>')}</h3>
+      <p class="cta-body">${cta.body}</p>
+      <div class="cta-proof-row">
+        <div class="cta-proof-pill">30-minute session</div>
+        <div class="cta-proof-pill">No obligation</div>
+        <div class="cta-proof-pill">Personalized action plan</div>
+      </div>
+      <div class="cta-actions">
+        <a href="${BOOKING_URL}" class="cta-btn secondary" target="_blank" rel="noopener noreferrer">Book a call</a>
+        <a href="${BOOKING_URL}" class="cta-btn" target="_blank" rel="noopener noreferrer">Book my free AI Strategy Session →</a>
+      </div>
+      <div class="cta-urgency">${cta.urgency}</div>
+    </div>
+
+    <div class="report-footer">
+      Healthcare AI Readiness Score™ · Your Lifestyle Navigator™ · The Healthcare AI Evangelist<br>
+      John S. Smith Jr., RN, BSN, CEPA · yourlifestylenavigator.com · © 2026 YLN. All rights reserved.
+    </div>
+  `;
+
+      document.getElementById('capture-screen').style.display = 'none';
+      const reportEl = document.getElementById('report-screen');
+      reportEl.innerHTML = html;
+      reportEl.style.display = 'flex';
+
+      document.getElementById('rail-progress-label').textContent = 'REPORT COMPLETE';
+      document.getElementById('progress-fill').style.width = '100%';
+      document.getElementById('rail-progress-pct').textContent = '100%';
+      QUESTIONS.forEach((_, i) => {
+        const d = document.getElementById('dot-' + i);
+        if (d) d.className = 'step-dot done';
+      });
+    }
+
+    function finding(type, marker, html) {
+      return `<div class="finding ${type}"><div class="finding-marker">${marker}</div><div class="finding-text">${html}</div></div>`;
+    }
+
+    function revenueLabel(rev) {
+      if (rev < 1000000) return 'under $1M';
+      if (rev <= 5000000) return '$1M–$5M';
+      if (rev <= 10000000) return '$5M–$10M';
+      if (rev <= 15000000) return '$10M–$15M';
+      if (rev <= 20000000) return '$15M–$20M';
+      return '$20M+';
+    }
+
+    function whyNowSentence(s) {
+      if (s.tier === 'critical') {
+        return 'The leakage is already material, and every delayed month keeps the practice more founder-dependent than it should be.';
+      }
+      if (s.tier === 'moderate') {
+        return 'You already have workable foundations, which means the next layer of gains is recoverable with focused implementation.';
+      }
+      return 'You are close enough to premium positioning that targeted operational upgrades can materially change exit outcomes.';
+    }
+
+    function buildLeakBreakdown(s) {
+      let html = '';
+      const rev = s.rev;
+
+      // Admin labor leakage
+      let adminLeak = 0;
+      if (s.s1 === 1) adminLeak = Math.round(rev * 0.10 / 12);
+      else if (s.s1 === 2) adminLeak = Math.round(rev * 0.06 / 12);
+      else if (s.s1 === 3) adminLeak = Math.round(rev * 0.025 / 12);
+      if (adminLeak > 0) {
+        const type = s.s1 <= 2 ? 'urgent' : 'caution';
+        html += finding(type, '$', '<b>Administrative labor waste:</b> Estimated ' + fmtFull(adminLeak) + '/month in staff time spent on tasks AI handles in seconds — insurance verification, prior auth follow-ups, data entry, and manual claim scrubbing.');
+      } else {
+        html += finding('good', '✓', '<b>Administrative efficiency:</b> Your admin automation is limiting labor waste from this source. Continue monitoring as patient volume grows.');
+      }
+
+      // Denial rate leakage
+      let denialLeak = 0;
+      if (s.s2 === 1) denialLeak = Math.round(rev * 0.12 / 12);
+      else if (s.s2 === 2) denialLeak = Math.round(rev * 0.07 / 12);
+      else if (s.s2 === 3) denialLeak = Math.round(rev * 0.03 / 12);
+      if (denialLeak > 0) {
+        const type = s.s2 <= 2 ? 'urgent' : 'caution';
+        html += finding(type, '$', '<b>Claim denial revenue loss:</b> Estimated ' + fmtFull(denialLeak) + '/month in write-offs, rework costs, and delayed payments from first-submission denials. Predictive denial AI eliminates 60–80% of this within 90 days of deployment.');
+      } else {
+        html += finding('good', '✓', '<b>Billing performance:</b> Your clean claim rate is limiting denial-related revenue loss. AI-assisted coding can push this performance further and protect it at scale.');
+      }
+
+      // Turnover leakage
+      let turnoverLeak = 0;
+      if (s.s3 === 1) turnoverLeak = Math.round(rev * 0.06 / 12);
+      else if (s.s3 === 2) turnoverLeak = Math.round(rev * 0.035 / 12);
+      if (turnoverLeak > 0) {
+        html += finding('caution', '$', '<b>Staff turnover replacement cost:</b> Estimated ' + fmtFull(turnoverLeak) + '/month amortized across recruiting, onboarding, training, and productivity loss for departed staff. Each departure costs 50–150% of the employee\'s annual salary. AI-driven burnout reduction is the most direct intervention.');
+      } else {
+        html += finding('good', '✓', '<b>Turnover costs are low:</b> Your current retention rate is limiting replacement cost leakage. This is a meaningful competitive advantage — protect it by continuing to reduce administrative burden.');
+      }
+
+      return html;
+    }
+
+    // ═══════════════════════════════════════════════════
+    // INIT
+    // ═══════════════════════════════════════════════════
+    initDots();
+    updateProgress();
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>YLN Design System</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Mono:wght@300;400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+<style>
+:root {
+  --brand-night: #091024;
+  --brand-indigo: #0c1332;
+  --brand-royal: #16204f;
+  --brand-cobalt: #243574;
+  --brand-parchment: #f5f1e8;
+  --brand-warm: #eee7db;
+  --brand-line: #d9d0c1;
+  --brand-stone: #958c82;
+  --brand-gold: #9b7b46;
+  --brand-gold-light: #c1a06a;
+  --brand-gold-wash: #ece1cc;
+  --brand-success: #244537;
+  --brand-danger: #7c2330;
+  --white: #ffffff;
+  --font-display: 'Cormorant Garamond', Georgia, serif;
+  --font-body: 'DM Sans', sans-serif;
+  --font-mono: 'DM Mono', monospace;
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 24px;
+  --shadow-soft: 0 10px 30px rgba(12, 19, 50, 0.08);
+  --shadow-deep: 0 24px 70px rgba(12, 19, 50, 0.16);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: var(--font-body);
+  background:
+    radial-gradient(circle at top right, rgba(193,160,106,.14), transparent 22%),
+    linear-gradient(180deg, #fbf8f2 0%, var(--brand-parchment) 100%);
+  color: var(--brand-indigo);
+  min-height: 100vh;
+}
+
+.page-shell {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.hero {
+  background:
+    radial-gradient(circle at top right, rgba(193,160,106,.14), transparent 32%),
+    linear-gradient(145deg, var(--brand-night) 0%, var(--brand-indigo) 44%, var(--brand-royal) 100%);
+  border-radius: 32px;
+  padding: 2.25rem;
+  color: var(--brand-parchment);
+  box-shadow: var(--shadow-deep);
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::after {
+  content: '';
+  position: absolute;
+  inset: auto -80px -120px auto;
+  width: 280px;
+  height: 280px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(193,160,106,.16) 0%, transparent 70%);
+}
+
+.hero-top {
+  display: flex;
+  justify-content: space-between;
+  gap: 2rem;
+  align-items: flex-start;
+  margin-bottom: 2.5rem;
+}
+
+.logo-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 1rem;
+  background: rgba(245,241,232,.95);
+  color: var(--brand-indigo);
+  border-radius: 18px;
+  padding: .85rem 1rem;
+}
+
+.logo-chip img {
+  width: 68px;
+  height: 68px;
+  object-fit: contain;
+}
+
+.chip-copy {
+  display: flex;
+  flex-direction: column;
+  gap: .15rem;
+}
+
+.chip-label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--brand-cobalt);
+}
+
+.chip-title {
+  font-family: var(--font-display);
+  font-size: 28px;
+  line-height: 1;
+}
+
+.hero-links {
+  display: flex;
+  gap: .75rem;
+  flex-wrap: wrap;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 46px;
+  padding: .9rem 1.35rem;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  text-decoration: none;
+  font-size: 13px;
+  letter-spacing: .03em;
+  transition: transform .15s, background .2s, color .2s, border-color .2s;
+}
+
+.btn:hover { transform: translateY(-1px); }
+.btn-primary {
+  background: var(--brand-gold-light);
+  color: var(--brand-night);
+}
+.btn-secondary {
+  background: transparent;
+  border-color: rgba(245,241,232,.28);
+  color: var(--brand-parchment);
+}
+
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--brand-gold-light);
+  margin-bottom: 1rem;
+}
+
+.hero h1 {
+  font-family: var(--font-display);
+  font-size: clamp(44px, 7vw, 86px);
+  line-height: .95;
+  letter-spacing: -.03em;
+  max-width: 760px;
+  margin-bottom: 1rem;
+}
+
+.hero h1 em {
+  color: var(--brand-gold-light);
+  font-style: italic;
+}
+
+.hero-copy {
+  max-width: 640px;
+  font-size: 18px;
+  line-height: 1.75;
+  color: rgba(245,241,232,.72);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+.panel {
+  background: rgba(255,255,255,.72);
+  border: 1px solid rgba(217,208,193,.85);
+  border-radius: 24px;
+  padding: 1.5rem;
+  backdrop-filter: blur(14px);
+  box-shadow: var(--shadow-soft);
+}
+
+.panel-title {
+  font-family: var(--font-display);
+  font-size: 28px;
+  color: var(--brand-indigo);
+  margin-bottom: .25rem;
+}
+
+.panel-sub {
+  font-size: 14px;
+  line-height: 1.7;
+  color: #615c56;
+  margin-bottom: 1.5rem;
+}
+
+.token-list {
+  display: grid;
+  gap: .85rem;
+}
+
+.token-item {
+  display: grid;
+  grid-template-columns: 56px 1fr;
+  gap: .85rem;
+  align-items: center;
+}
+
+.swatch {
+  width: 56px;
+  height: 56px;
+  border-radius: 18px;
+  border: 1px solid rgba(12,19,50,.08);
+}
+
+.token-name {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--brand-stone);
+  margin-bottom: .25rem;
+}
+
+.token-value {
+  font-family: var(--font-display);
+  font-size: 22px;
+  color: var(--brand-indigo);
+}
+
+.content-stack {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.section-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.5rem;
+}
+
+.type-sample {
+  border-top: 1px solid var(--brand-line);
+  padding-top: 1rem;
+}
+
+.type-label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: var(--brand-stone);
+  margin-bottom: .6rem;
+}
+
+.display-sample {
+  font-family: var(--font-display);
+  font-size: clamp(34px, 5vw, 60px);
+  line-height: 1;
+  color: var(--brand-indigo);
+}
+
+.body-sample {
+  font-size: 16px;
+  line-height: 1.8;
+  color: #504b46;
+}
+
+.mono-sample {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--brand-cobalt);
+}
+
+.component-row {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.card-row {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.card {
+  background: var(--white);
+  border: 1px solid var(--brand-line);
+  border-radius: 20px;
+  padding: 1.15rem;
+}
+
+.card-kicker {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: var(--brand-gold);
+  margin-bottom: .65rem;
+}
+
+.card h3 {
+  font-family: var(--font-display);
+  font-size: 28px;
+  line-height: 1.05;
+  margin-bottom: .5rem;
+}
+
+.card p {
+  font-size: 14px;
+  line-height: 1.7;
+  color: #5d5751;
+}
+
+.principles {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.principle {
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.9) 0%, rgba(245,241,232,.94) 100%);
+  border: 1px solid var(--brand-line);
+  border-radius: 20px;
+  padding: 1.25rem;
+}
+
+.principle-number {
+  font-family: var(--font-display);
+  font-size: 32px;
+  color: var(--brand-cobalt);
+  margin-bottom: .5rem;
+}
+
+.principle h4 {
+  font-size: 16px;
+  margin-bottom: .4rem;
+}
+
+.principle p {
+  font-size: 14px;
+  color: #5d5751;
+  line-height: 1.7;
+}
+
+.footer-note {
+  margin-top: 1.5rem;
+  padding: 1rem 1.25rem;
+  border-radius: 18px;
+  background: rgba(12,19,50,.05);
+  color: #534e48;
+  font-size: 14px;
+  line-height: 1.75;
+}
+
+@media (max-width: 980px) {
+  .grid,
+  .section-grid,
+  .card-row,
+  .principles { grid-template-columns: 1fr; }
+  .hero-top { flex-direction: column; }
+}
+</style>
+</head>
+<body>
+  <div class="page-shell">
+    <section class="hero">
+      <div class="hero-top">
+        <div class="logo-chip">
+          <img src="logo.png" alt="Your Lifestyle Navigator logo">
+          <div class="chip-copy">
+            <span class="chip-label">Design System</span>
+            <span class="chip-title">YLN Brand Core</span>
+          </div>
+        </div>
+        <div class="hero-links">
+          <a href="index.html" class="btn btn-secondary">Open landing page</a>
+          <a href="readiness-score.html" class="btn btn-secondary">Open readiness score</a>
+          <a href="https://api.growthhub365.com/widget/booking/ELU2FEOcVU21WWdx3jdZ" class="btn btn-primary" target="_blank" rel="noopener noreferrer">Book strategy call</a>
+        </div>
+      </div>
+
+      <div class="eyebrow">Logo-led visual language</div>
+      <h1>Refined, <em>editorial</em>, and rooted in the indigo monogram.</h1>
+      <p class="hero-copy">
+        The mark suggests elegance, legacy, precision, and calm authority. The system translates that into a restrained indigo palette, warm parchment surfaces, classical serif display typography, and clean contemporary UI structure.
+      </p>
+    </section>
+
+    <div class="grid">
+      <aside class="panel">
+        <div class="panel-title">Core Tokens</div>
+        <p class="panel-sub">Use indigo as the hero color, parchment as the base canvas, and gold only as a supporting luxury accent.</p>
+        <div class="token-list">
+          <div class="token-item">
+            <div class="swatch" style="background:#091024;"></div>
+            <div>
+              <div class="token-name">Night Base</div>
+              <div class="token-value">#091024</div>
+            </div>
+          </div>
+          <div class="token-item">
+            <div class="swatch" style="background:#0c1332;"></div>
+            <div>
+              <div class="token-name">Brand Indigo</div>
+              <div class="token-value">#0C1332</div>
+            </div>
+          </div>
+          <div class="token-item">
+            <div class="swatch" style="background:#243574;"></div>
+            <div>
+              <div class="token-name">Cobalt Accent</div>
+              <div class="token-value">#243574</div>
+            </div>
+          </div>
+          <div class="token-item">
+            <div class="swatch" style="background:#f5f1e8;"></div>
+            <div>
+              <div class="token-name">Parchment</div>
+              <div class="token-value">#F5F1E8</div>
+            </div>
+          </div>
+          <div class="token-item">
+            <div class="swatch" style="background:#9b7b46;"></div>
+            <div>
+              <div class="token-name">Reserved Gold</div>
+              <div class="token-value">#9B7B46</div>
+            </div>
+          </div>
+        </div>
+      </aside>
+
+      <div class="content-stack">
+        <section class="panel">
+          <div class="panel-title">Typography</div>
+          <p class="panel-sub">The logo calls for contrast: classical display serif for authority, modern sans for clarity, and mono for system labels.</p>
+          <div class="section-grid">
+            <div class="type-sample">
+              <div class="type-label">Display / Cormorant Garamond</div>
+              <div class="display-sample">Build legacy, not clutter.</div>
+            </div>
+            <div class="type-sample">
+              <div class="type-label">Body / DM Sans</div>
+              <div class="body-sample">Use clean, confident paragraphs with generous line height. The serif handles emotion and aspiration; the sans keeps the interface crisp and trustworthy.</div>
+            </div>
+          </div>
+          <div class="type-sample">
+            <div class="type-label">Utility / DM Mono</div>
+            <div class="mono-sample">Strategy Session · Readiness Score · Enterprise Value</div>
+          </div>
+        </section>
+
+        <section class="panel">
+          <div class="panel-title">Buttons & Surfaces</div>
+          <p class="panel-sub">Primary actions should feel quiet but decisive. Avoid loud gradients, neon accents, or generic startup-blue buttons.</p>
+          <div class="component-row" style="margin-bottom:1.5rem;">
+            <a href="#" class="btn" style="background:#243574;color:#f5f1e8;">Primary Action</a>
+            <a href="#" class="btn" style="background:#9b7b46;color:#091024;">Luxury Accent</a>
+            <a href="#" class="btn" style="border-color:#d9d0c1;color:#0c1332;background:transparent;">Secondary Action</a>
+          </div>
+          <div class="card-row">
+            <div class="card">
+              <div class="card-kicker">Surface 01</div>
+              <h3>Parchment panels</h3>
+              <p>Warm, refined cards with hairline borders and soft shadows carry most structured content.</p>
+            </div>
+            <div class="card">
+              <div class="card-kicker">Surface 02</div>
+              <h3>Indigo hero zones</h3>
+              <p>Hero moments should use deep indigo with gold or parchment highlights, echoing the logo’s authority.</p>
+            </div>
+            <div class="card">
+              <div class="card-kicker">Surface 03</div>
+              <h3>Quiet contrast</h3>
+              <p>Use gold sparingly for emphasis, not everywhere. The logo wins because it is disciplined.</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="panel">
+          <div class="panel-title">Brand Principles</div>
+          <p class="panel-sub">These are the rules that keep the experience aligned with the mark instead of drifting into generic marketing design.</p>
+          <div class="principles">
+            <div class="principle">
+              <div class="principle-number">01</div>
+              <h4>Editorial over app-like</h4>
+              <p>Lead with generous headlines, restrained spacing, and composed rhythm. The brand should feel curated, not dashboard-heavy.</p>
+            </div>
+            <div class="principle">
+              <div class="principle-number">02</div>
+              <h4>Indigo is the signature</h4>
+              <p>The monogram is the strongest cue in the system. Indigo should carry the brand before any supporting accent does.</p>
+            </div>
+            <div class="principle">
+              <div class="principle-number">03</div>
+              <h4>Gold is ceremonial</h4>
+              <p>Gold should denote premium moments, highlights, and emphasis. Too much of it weakens the sophistication.</p>
+            </div>
+          </div>
+          <div class="footer-note">
+            Recommended default application: use parchment backgrounds, indigo headers and CTAs, serif display headlines, mono eyebrow labels, and the full logo only in high-trust brand anchors such as navigation, hero identity, and system reference pages.
+          </div>
+        </section>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
